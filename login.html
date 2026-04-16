@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mi cuenta – Eres Especial</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root {
+      --cream:#f5f0eb; --blush:#e8c4b8; --rose:#c4856a;
+      --wine:#7a3d3d; --dark:#2a1a1a; --light:#faf7f4;
+      --text:#4a3030; --gray:#9e8888;
+    }
+    body {
+      font-family:'Jost',sans-serif; background:var(--cream); color:var(--text);
+      min-height:100vh; display:flex; flex-direction:column;
+    }
+
+    nav {
+      display:flex; align-items:center; justify-content:space-between;
+      padding:18px 5%; background:rgba(250,247,244,.95);
+      border-bottom:1px solid rgba(196,133,106,.2);
+    }
+    .nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:var(--wine); text-decoration:none; }
+    .nav-logo span { font-style:italic; font-weight:300; }
+
+    /* MAIN */
+    .auth-wrapper {
+      flex:1; display:flex; align-items:center; justify-content:center;
+      padding:40px 20px;
+      background:linear-gradient(135deg,var(--cream) 0%,var(--blush) 100%);
+    }
+
+    .auth-card {
+      background:#fff; width:100%; max-width:460px;
+      box-shadow:0 20px 60px rgba(122,61,61,.12);
+    }
+
+    /* TABS */
+    .auth-tabs { display:flex; }
+    .auth-tab {
+      flex:1; padding:18px; background:none; border:none; cursor:pointer;
+      font-family:'Jost',sans-serif; font-size:.78rem; letter-spacing:.14em;
+      text-transform:uppercase; color:var(--gray);
+      border-bottom:2px solid var(--blush); transition:all .2s;
+    }
+    .auth-tab.active { color:var(--wine); border-bottom-color:var(--wine); background:rgba(196,133,106,.04); }
+
+    .auth-body { padding:36px; }
+
+    .auth-logo {
+      text-align:center; margin-bottom:1.8rem;
+    }
+    .auth-logo-text {
+      font-family:'Cormorant Garamond',serif;
+      font-size:1.8rem; font-weight:300; color:var(--wine);
+    }
+    .auth-logo-text span { font-style:italic; }
+    .auth-sub { font-size:.82rem; color:var(--gray); margin-top:.3rem; }
+
+    .form-group { margin-bottom:1.2rem; }
+    .form-group label {
+      display:block; font-size:.7rem; letter-spacing:.14em; text-transform:uppercase;
+      color:var(--text); margin-bottom:.5rem;
+    }
+    .form-group input {
+      width:100%; padding:12px 14px;
+      border:1.5px solid var(--blush); background:var(--light);
+      font-family:'Jost',sans-serif; font-size:.9rem; color:var(--text);
+      transition:border-color .2s; outline:none;
+    }
+    .form-group input:focus { border-color:var(--rose); }
+    .form-group input::placeholder { color:var(--gray); font-size:.85rem; }
+
+    .form-row { display:grid; grid-template-columns:1fr 1fr; gap:1rem; }
+
+    .input-wrap { position:relative; }
+    .input-wrap input { padding-right:44px; }
+    .show-pass {
+      position:absolute; right:12px; top:50%; transform:translateY(-50%);
+      background:none; border:none; cursor:pointer; color:var(--gray);
+      font-size:.9rem; transition:color .2s;
+    }
+    .show-pass:hover { color:var(--rose); }
+
+    .forgot { text-align:right; margin-top:.4rem; }
+    .forgot a { font-size:.75rem; color:var(--rose); text-decoration:none; }
+    .forgot a:hover { text-decoration:underline; }
+
+    .btn-submit {
+      width:100%; padding:14px; background:var(--wine); color:#fff; border:none;
+      cursor:pointer; font-family:'Jost',sans-serif;
+      font-size:.8rem; letter-spacing:.16em; text-transform:uppercase;
+      margin-top:1.4rem; transition:background .25s;
+    }
+    .btn-submit:hover { background:var(--rose); }
+
+    .divider-or {
+      display:flex; align-items:center; gap:1rem; margin:1.4rem 0;
+      font-size:.72rem; color:var(--gray); letter-spacing:.1em;
+    }
+    .divider-or::before, .divider-or::after {
+      content:''; flex:1; height:1px; background:var(--blush);
+    }
+
+    .btn-social {
+      width:100%; padding:12px; background:none; border:1.5px solid var(--blush);
+      cursor:pointer; font-family:'Jost',sans-serif; font-size:.82rem;
+      color:var(--text); margin-bottom:.7rem; transition:border-color .2s;
+      display:flex; align-items:center; justify-content:center; gap:.6rem;
+    }
+    .btn-social:hover { border-color:var(--rose); color:var(--rose); }
+
+    .terms { font-size:.72rem; color:var(--gray); line-height:1.6; margin-top:1.2rem; text-align:center; }
+    .terms a { color:var(--rose); text-decoration:none; }
+
+    .form-section { display:none; }
+    .form-section.active { display:block; }
+
+    /* PASSWORD STRENGTH */
+    .strength-bar { height:3px; background:var(--blush); margin-top:.5rem; border-radius:2px; overflow:hidden; }
+    .strength-fill { height:100%; width:0%; transition:width .3s, background .3s; background:var(--rose); }
+
+    footer { padding:20px 5%; text-align:center; font-size:.75rem; color:var(--gray); background:rgba(250,247,244,.6); }
+    footer a { color:var(--rose); text-decoration:none; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Eres <span>Especial</span></a>
+  <a href="index.html" style="font-size:.78rem;color:var(--gray);text-decoration:none;">← Volver a la tienda</a>
+</nav>
+
+<div class="auth-wrapper">
+  <div class="auth-card">
+    <div class="auth-tabs">
+      <button class="auth-tab active" onclick="switchTab('login',this)">Iniciar sesión</button>
+      <button class="auth-tab" onclick="switchTab('registro',this)">Crear cuenta</button>
+    </div>
+
+    <div class="auth-body">
+      <div class="auth-logo">
+        <div class="auth-logo-text">Eres <span>Especial</span></div>
+        <div class="auth-sub" id="authSub">Bienvenida de regreso 🌸</div>
+      </div>
+
+      <!-- LOGIN -->
+      <div class="form-section active" id="loginForm">
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" placeholder="tucorreo@email.com" id="loginEmail"/>
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <div class="input-wrap">
+            <input type="password" placeholder="Tu contraseña" id="loginPass"/>
+            <button class="show-pass" onclick="togglePass('loginPass',this)" type="button">👁</button>
+          </div>
+          <div class="forgot"><a href="#">¿Olvidaste tu contraseña?</a></div>
+        </div>
+        <button class="btn-submit" onclick="handleLogin()">Iniciar sesión</button>
+
+        <div class="divider-or">o continúa con</div>
+        <button class="btn-social">📘 Continuar con Facebook</button>
+        <button class="btn-social">🔍 Continuar con Google</button>
+      </div>
+
+      <!-- REGISTRO -->
+      <div class="form-section" id="registroForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" placeholder="Tu nombre"/>
+          </div>
+          <div class="form-group">
+            <label>Apellido</label>
+            <input type="text" placeholder="Tu apellido"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Correo electrónico</label>
+          <input type="email" placeholder="tucorreo@email.com"/>
+        </div>
+        <div class="form-group">
+          <label>Número de WhatsApp (opcional)</label>
+          <input type="tel" placeholder="+57 300 000 0000"/>
+        </div>
+        <div class="form-group">
+          <label>Contraseña</label>
+          <div class="input-wrap">
+            <input type="password" placeholder="Mínimo 8 caracteres" id="regPass" oninput="checkStrength(this.value)"/>
+            <button class="show-pass" onclick="togglePass('regPass',this)" type="button">👁</button>
+          </div>
+          <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
+        </div>
+        <div class="form-group">
+          <label>Confirmar contraseña</label>
+          <div class="input-wrap">
+            <input type="password" placeholder="Repite tu contraseña" id="regPass2"/>
+            <button class="show-pass" onclick="togglePass('regPass2',this)" type="button">👁</button>
+          </div>
+        </div>
+        <button class="btn-submit" onclick="handleRegister()">Crear mi cuenta</button>
+        <p class="terms">
+          Al registrarte aceptas nuestros <a href="#">Términos de uso</a> y <a href="#">Política de privacidad</a>.
+          Tus datos están protegidos 🔒
+        </p>
+      </div>
+
+    </div><!-- auth-body -->
+  </div><!-- auth-card -->
+</div>
+
+<footer>
+  ¿Necesitas ayuda? <a href="https://wa.me/1234567890">Escríbenos por WhatsApp</a> · © 2025 Eres Especial
+</footer>
+
+<script>
+function switchTab(section, btn) {
+  document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(section + 'Form').classList.add('active');
+  document.getElementById('authSub').textContent =
+    section === 'login' ? 'Bienvenida de regreso 🌸' : 'Únete a nuestra comunidad 🌺';
+}
+
+function togglePass(id, btn) {
+  const inp = document.getElementById(id);
+  inp.type = inp.type === 'password' ? 'text' : 'password';
+  btn.textContent = inp.type === 'password' ? '👁' : '🙈';
+}
+
+function checkStrength(val) {
+  let score = 0;
+  if (val.length >= 8) score++;
+  if (/[A-Z]/.test(val)) score++;
+  if (/[0-9]/.test(val)) score++;
+  if (/[^A-Za-z0-9]/.test(val)) score++;
+  const fill = document.getElementById('strengthFill');
+  const colors = ['#e8c4b8','#c4856a','#a0602a','#4a7a3d'];
+  fill.style.width = (score * 25) + '%';
+  fill.style.background = colors[score - 1] || 'var(--blush)';
+}
+
+function handleLogin() {
+  const email = document.getElementById('loginEmail').value;
+  const pass  = document.getElementById('loginPass').value;
+  if (!email || !pass) { alert('Por favor completa todos los campos'); return; }
+  // Aquí conectarás Firebase Auth:
+  // firebase.auth().signInWithEmailAndPassword(email, pass)
+  alert('¡Bienvenida! (Conecta Firebase para activar el login real)');
+}
+
+function handleRegister() {
+  const pass  = document.getElementById('regPass').value;
+  const pass2 = document.getElementById('regPass2').value;
+  if (pass !== pass2) { alert('Las contraseñas no coinciden'); return; }
+  if (pass.length < 8) { alert('La contraseña debe tener al menos 8 caracteres'); return; }
+  // Aquí conectarás Firebase Auth:
+  // firebase.auth().createUserWithEmailAndPassword(email, pass)
+  alert('¡Cuenta creada! (Conecta Firebase para activar el registro real)');
+}
+</script>
+</body>
+</html>
