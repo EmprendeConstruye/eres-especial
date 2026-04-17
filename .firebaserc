@@ -1,5 +1,7 @@
 {
   "projects": {
     "default": "eres-especial"
-  }
+  },
+  "targets": {},
+  "etags": {}
 }
