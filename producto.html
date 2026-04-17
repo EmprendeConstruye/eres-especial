@@ -3,210 +3,98 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vestido Floral Rosa – Eres Especial</title>
+  <title>Producto – Eres Especial</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-    :root {
-      --cream:#f5f0eb; --blush:#e8c4b8; --rose:#c4856a;
-      --wine:#7a3d3d; --dark:#2a1a1a; --light:#faf7f4;
-      --text:#4a3030; --gray:#9e8888;
-    }
-    body { font-family:'Jost',sans-serif; background:var(--light); color:var(--text); }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--cream:#f5f0eb;--blush:#e8c4b8;--rose:#c4856a;--wine:#7a3d3d;--dark:#2a1a1a;--light:#faf7f4;--text:#4a3030;--gray:#9e8888}
+    body{font-family:'Jost',sans-serif;background:var(--light);color:var(--text)}
+    nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5%;background:rgba(250,247,244,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(196,133,106,.2)}
+    .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--wine);text-decoration:none}
+    .nav-logo span{font-style:italic;font-weight:300}
+    .nav-icons{display:flex;gap:1rem}
+    .nav-icons button{background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--text)}
+    .breadcrumb{padding:16px 5%;font-size:.72rem;letter-spacing:.1em;color:var(--gray)}
+    .breadcrumb a{color:var(--rose);text-decoration:none}
 
-    nav {
-      position:sticky; top:0; z-index:100;
-      display:flex; align-items:center; justify-content:space-between;
-      padding:16px 5%; background:rgba(250,247,244,.95);
-      backdrop-filter:blur(12px);
-      border-bottom:1px solid rgba(196,133,106,.2);
-    }
-    .nav-logo { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:600; color:var(--wine); text-decoration:none; }
-    .nav-logo span { font-style:italic; font-weight:300; }
-    .nav-icons { display:flex; gap:1rem; }
-    .nav-icons button { background:none; border:none; cursor:pointer; font-size:1.1rem; color:var(--text); }
+    .product-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;padding:20px 5% 60px;align-items:start}
+    .gallery{position:sticky;top:80px}
+    .main-img{aspect-ratio:3/4;background:linear-gradient(135deg,var(--blush) 0%,var(--cream) 100%);display:flex;align-items:center;justify-content:center;font-size:8rem;position:relative;margin-bottom:1rem;overflow:hidden}
+    .main-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+    .main-img .placeholder{font-size:8rem}
+    .badge-new{position:absolute;top:16px;left:16px;background:var(--wine);color:#fff;font-size:.65rem;letter-spacing:.1em;padding:4px 12px;text-transform:uppercase;z-index:1}
+    .btn-wish-lg{position:absolute;top:14px;right:16px;background:#fff;border:none;cursor:pointer;width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;color:var(--gray);transition:color .2s;box-shadow:0 2px 10px rgba(0,0,0,.08);z-index:1}
+    .btn-wish-lg.active,.btn-wish-lg:hover{color:var(--rose)}
+    .thumbs{display:flex;gap:.8rem}
+    .thumb{flex:1;aspect-ratio:3/4;cursor:pointer;background:linear-gradient(135deg,var(--cream),var(--blush));display:flex;align-items:center;justify-content:center;font-size:2rem;border:2px solid transparent;transition:border-color .2s;overflow:hidden;position:relative}
+    .thumb img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+    .thumb.active{border-color:var(--wine)}
+    .thumb:hover{border-color:var(--rose)}
 
-    .breadcrumb { padding:16px 5%; font-size:.72rem; letter-spacing:.1em; color:var(--gray); }
-    .breadcrumb a { color:var(--rose); text-decoration:none; }
+    .prod-category{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);margin-bottom:.6rem}
+    .prod-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:300;color:var(--dark);margin-bottom:.8rem;line-height:1.2}
+    .rating{display:flex;align-items:center;gap:.5rem;margin-bottom:1.2rem}
+    .stars{color:var(--rose);font-size:.9rem}
+    .rating-count{font-size:.78rem;color:var(--gray)}
+    .price-block{margin-bottom:1.8rem}
+    .current-price{font-size:1.8rem;font-weight:500;color:var(--wine)}
+    .old-price{font-size:1rem;color:var(--gray);text-decoration:line-through;margin-left:.5rem}
+    .save-tag{display:inline-block;background:var(--blush);color:var(--wine);font-size:.7rem;padding:3px 10px;margin-left:.5rem;vertical-align:middle}
+    .divider{border:none;border-top:1px solid var(--blush);margin:1.4rem 0}
+    .option-label{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text);margin-bottom:.8rem;display:block}
+    .option-label span{color:var(--rose);font-style:italic;text-transform:none;letter-spacing:0}
+    .size-grid{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.4rem}
+    .size-btn{padding:8px 18px;border:1.5px solid var(--blush);background:none;cursor:pointer;font-size:.8rem;color:var(--text);transition:all .2s}
+    .size-btn:hover{border-color:var(--rose);color:var(--rose)}
+    .size-btn.selected{border-color:var(--wine);background:var(--wine);color:#fff}
+    .size-btn.unavailable{opacity:.35;cursor:not-allowed;text-decoration:line-through}
+    .size-guide{font-size:.75rem;color:var(--rose);cursor:pointer;text-decoration:underline;margin-bottom:1.4rem;display:block}
+    .qty-row{display:flex;align-items:center;gap:1rem;margin-bottom:1.6rem}
+    .qty-ctrl{display:flex;align-items:center;border:1.5px solid var(--blush)}
+    .qty-ctrl button{width:38px;height:38px;background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--text);transition:background .2s}
+    .qty-ctrl button:hover{background:var(--cream)}
+    .qty-ctrl input{width:50px;text-align:center;border:none;border-left:1.5px solid var(--blush);border-right:1.5px solid var(--blush);height:38px;font-family:'Jost',sans-serif;font-size:.9rem;color:var(--text);background:none}
+    .stock-info{font-size:.78rem;color:var(--gray)}
+    .stock-info.low{color:var(--rose)}
+    .btn-cart{width:100%;padding:16px;background:var(--dark);color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;transition:background .25s;margin-bottom:.8rem}
+    .btn-cart:hover{background:var(--wine)}
+    .btn-buy{width:100%;padding:15px;background:none;color:var(--wine);border:1.5px solid var(--wine);cursor:pointer;font-family:'Jost',sans-serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;transition:all .25s}
+    .btn-buy:hover{background:var(--wine);color:#fff}
+    .benefits{display:flex;gap:1.5rem;margin-top:1.6rem;flex-wrap:wrap}
+    .benefit{display:flex;align-items:center;gap:.4rem;font-size:.76rem;color:var(--gray)}
 
-    /* PRODUCT LAYOUT */
-    .product-layout {
-      display:grid; grid-template-columns:1fr 1fr;
-      gap:4rem; padding:20px 5% 60px; align-items:start;
-    }
+    .tabs-section{padding:60px 5%;background:var(--cream)}
+    .tabs{display:flex;gap:0;border-bottom:2px solid var(--blush);margin-bottom:2rem}
+    .tab-btn{padding:12px 28px;background:none;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+    .tab-btn.active{color:var(--wine);border-bottom-color:var(--wine)}
+    .tab-content{display:none}
+    .tab-content.active{display:block}
+    .tab-content p{font-size:.9rem;line-height:1.8;color:var(--text);margin-bottom:.8rem}
+    .tab-content ul{padding-left:1.2rem}
+    .tab-content li{font-size:.88rem;line-height:1.9;color:var(--text)}
+    .size-table{width:100%;border-collapse:collapse;font-size:.82rem}
+    .size-table th{background:var(--wine);color:#fff;padding:10px 14px;text-align:left;font-weight:400;letter-spacing:.1em}
+    .size-table td{padding:9px 14px;border-bottom:1px solid var(--blush)}
+    .size-table tr:nth-child(even) td{background:#fff}
 
-    /* GALLERY */
-    .gallery { position:sticky; top:80px; }
-    .main-img {
-      aspect-ratio:3/4; background:linear-gradient(135deg,var(--blush) 0%,var(--cream) 100%);
-      display:flex; align-items:center; justify-content:center;
-      font-size:10rem; position:relative; margin-bottom:1rem;
-      overflow:hidden;
-    }
-    .main-img .badge-new {
-      position:absolute; top:16px; left:16px;
-      background:var(--wine); color:#fff;
-      font-size:.65rem; letter-spacing:.1em; padding:4px 12px; text-transform:uppercase;
-    }
-    .main-img .btn-wish-lg {
-      position:absolute; top:14px; right:16px;
-      background:#fff; border:none; cursor:pointer;
-      width:40px; height:40px; border-radius:50%;
-      display:flex; align-items:center; justify-content:center;
-      font-size:1.2rem; color:var(--gray); transition:color .2s;
-      box-shadow:0 2px 10px rgba(0,0,0,.08);
-    }
-    .btn-wish-lg.active, .btn-wish-lg:hover { color:var(--rose); }
+    .related-section{padding:60px 5%}
+    .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.6rem,2.5vw,2.2rem);font-weight:300;color:var(--dark);margin-bottom:2rem}
+    .related-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1.5rem}
+    .rel-card{cursor:pointer;transition:transform .3s}
+    .rel-card:hover{transform:translateY(-4px)}
+    .rel-img{aspect-ratio:3/4;background:linear-gradient(135deg,var(--blush),var(--cream));display:flex;align-items:center;justify-content:center;font-size:3.5rem;overflow:hidden;position:relative}
+    .rel-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+    .rel-name{font-family:'Cormorant Garamond',serif;font-size:1rem;margin:.6rem 0 .2rem}
+    .rel-price{font-size:.88rem;color:var(--wine);font-weight:500}
 
-    .thumbs { display:flex; gap:.8rem; }
-    .thumb {
-      flex:1; aspect-ratio:3/4; cursor:pointer;
-      background:linear-gradient(135deg,var(--cream),var(--blush));
-      display:flex; align-items:center; justify-content:center;
-      font-size:2.5rem; border:2px solid transparent;
-      transition:border-color .2s;
-    }
-    .thumb.active { border-color:var(--wine); }
-    .thumb:hover { border-color:var(--rose); }
+    .wa-btn{position:fixed;bottom:28px;right:28px;z-index:99;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,.4)}
+    .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--dark);color:#fff;padding:12px 24px;font-size:.82rem;letter-spacing:.08em;opacity:0;transition:all .3s;pointer-events:none;z-index:200}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
-    /* PRODUCT INFO */
-    .product-info {}
-    .prod-category { font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--rose); margin-bottom:.6rem; }
-    .prod-title {
-      font-family:'Cormorant Garamond',serif;
-      font-size:clamp(1.8rem,3vw,2.5rem); font-weight:300;
-      color:var(--dark); margin-bottom:.8rem; line-height:1.2;
-    }
+    /* Loading state */
+    .loading-product{padding:80px 5%;text-align:center;color:var(--gray);font-family:'Cormorant Garamond',serif;font-size:1.2rem}
 
-    .rating { display:flex; align-items:center; gap:.5rem; margin-bottom:1.2rem; }
-    .stars { color:var(--rose); font-size:.9rem; }
-    .rating-count { font-size:.78rem; color:var(--gray); }
-
-    .price-block { margin-bottom:1.8rem; }
-    .current-price { font-size:1.8rem; font-weight:500; color:var(--wine); }
-    .old-price { font-size:1rem; color:var(--gray); text-decoration:line-through; margin-left:.5rem; }
-    .save-tag {
-      display:inline-block; background:var(--blush); color:var(--wine);
-      font-size:.7rem; padding:3px 10px; margin-left:.5rem; vertical-align:middle;
-    }
-
-    .divider { border:none; border-top:1px solid var(--blush); margin:1.4rem 0; }
-
-    .option-label {
-      font-size:.72rem; letter-spacing:.14em; text-transform:uppercase;
-      color:var(--text); margin-bottom:.8rem; display:block;
-    }
-    .option-label span { color:var(--rose); font-style:italic; text-transform:none; letter-spacing:0; }
-
-    .size-grid { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.4rem; }
-    .size-btn {
-      padding:8px 18px; border:1.5px solid var(--blush);
-      background:none; cursor:pointer; font-size:.8rem;
-      color:var(--text); transition:all .2s;
-    }
-    .size-btn:hover { border-color:var(--rose); color:var(--rose); }
-    .size-btn.selected { border-color:var(--wine); background:var(--wine); color:#fff; }
-    .size-btn.unavailable { opacity:.35; cursor:not-allowed; text-decoration:line-through; }
-
-    .size-guide { font-size:.75rem; color:var(--rose); cursor:pointer; text-decoration:underline; margin-bottom:1.4rem; display:block; }
-
-    .qty-row { display:flex; align-items:center; gap:1rem; margin-bottom:1.6rem; }
-    .qty-ctrl { display:flex; align-items:center; border:1.5px solid var(--blush); }
-    .qty-ctrl button {
-      width:38px; height:38px; background:none; border:none; cursor:pointer;
-      font-size:1.1rem; color:var(--text); transition:background .2s;
-    }
-    .qty-ctrl button:hover { background:var(--cream); }
-    .qty-ctrl input {
-      width:50px; text-align:center; border:none; border-left:1.5px solid var(--blush);
-      border-right:1.5px solid var(--blush); height:38px;
-      font-family:'Jost',sans-serif; font-size:.9rem; color:var(--text);
-      background:none;
-    }
-    .stock-info { font-size:.78rem; color:var(--gray); }
-    .stock-info.low { color:var(--rose); }
-
-    .btn-cart {
-      width:100%; padding:16px; background:var(--dark); color:#fff; border:none;
-      cursor:pointer; font-family:'Jost',sans-serif;
-      font-size:.82rem; letter-spacing:.16em; text-transform:uppercase;
-      transition:background .25s; margin-bottom:.8rem;
-    }
-    .btn-cart:hover { background:var(--wine); }
-
-    .btn-buy {
-      width:100%; padding:15px; background:none; color:var(--wine);
-      border:1.5px solid var(--wine); cursor:pointer;
-      font-family:'Jost',sans-serif; font-size:.82rem; letter-spacing:.16em;
-      text-transform:uppercase; transition:all .25s;
-    }
-    .btn-buy:hover { background:var(--wine); color:#fff; }
-
-    .benefits { display:flex; gap:1.5rem; margin-top:1.6rem; flex-wrap:wrap; }
-    .benefit { display:flex; align-items:center; gap:.4rem; font-size:.76rem; color:var(--gray); }
-
-    /* TABS */
-    .tabs-section { padding:60px 5%; background:var(--cream); }
-    .tabs { display:flex; gap:0; border-bottom:2px solid var(--blush); margin-bottom:2rem; }
-    .tab-btn {
-      padding:12px 28px; background:none; border:none; cursor:pointer;
-      font-family:'Jost',sans-serif; font-size:.8rem; letter-spacing:.12em;
-      text-transform:uppercase; color:var(--gray);
-      border-bottom:2px solid transparent; margin-bottom:-2px;
-      transition:all .2s;
-    }
-    .tab-btn.active { color:var(--wine); border-bottom-color:var(--wine); }
-    .tab-content { display:none; }
-    .tab-content.active { display:block; }
-    .tab-content p { font-size:.9rem; line-height:1.8; color:var(--text); margin-bottom:.8rem; }
-    .tab-content ul { padding-left:1.2rem; }
-    .tab-content li { font-size:.88rem; line-height:1.9; color:var(--text); }
-
-    .size-table { width:100%; border-collapse:collapse; font-size:.82rem; }
-    .size-table th { background:var(--wine); color:#fff; padding:10px 14px; text-align:left; font-weight:400; letter-spacing:.1em; }
-    .size-table td { padding:9px 14px; border-bottom:1px solid var(--blush); }
-    .size-table tr:nth-child(even) td { background:#fff; }
-
-    /* REVIEWS */
-    .review-summary { display:flex; align-items:center; gap:2rem; margin-bottom:2rem; }
-    .big-rating { font-family:'Cormorant Garamond',serif; font-size:3.5rem; color:var(--wine); line-height:1; }
-    .rating-bars { flex:1; }
-    .bar-row { display:flex; align-items:center; gap:.8rem; margin-bottom:.4rem; font-size:.76rem; color:var(--gray); }
-    .bar-track { flex:1; height:6px; background:var(--blush); border-radius:3px; overflow:hidden; }
-    .bar-fill { height:100%; background:var(--rose); border-radius:3px; }
-
-    .review-card { background:#fff; padding:24px; margin-bottom:1rem; }
-    .review-header { display:flex; justify-content:space-between; align-items:start; margin-bottom:.8rem; }
-    .reviewer-name { font-weight:500; font-size:.88rem; }
-    .review-date { font-size:.72rem; color:var(--gray); }
-    .review-stars { color:var(--rose); font-size:.8rem; margin-bottom:.5rem; }
-    .review-text { font-size:.85rem; line-height:1.7; color:var(--text); }
-
-    /* RELATED */
-    .related-section { padding:60px 5%; }
-    .section-title { font-family:'Cormorant Garamond',serif; font-size:clamp(1.6rem,2.5vw,2.2rem); font-weight:300; color:var(--dark); margin-bottom:2rem; }
-    .related-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1.5rem; }
-    .rel-card { cursor:pointer; transition:transform .3s; }
-    .rel-card:hover { transform:translateY(-4px); }
-    .rel-img { aspect-ratio:3/4; background:linear-gradient(135deg,var(--blush),var(--cream)); display:flex; align-items:center; justify-content:center; font-size:3.5rem; }
-    .rel-name { font-family:'Cormorant Garamond',serif; font-size:1rem; margin:.6rem 0 .2rem; }
-    .rel-price { font-size:.88rem; color:var(--wine); font-weight:500; }
-
-    .wa-btn { position:fixed; bottom:28px; right:28px; z-index:99; width:54px; height:54px; background:#25D366; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:1.5rem; text-decoration:none; box-shadow:0 6px 20px rgba(37,211,102,.4); }
-
-    /* TOAST */
-    .toast {
-      position:fixed; bottom:100px; left:50%; transform:translateX(-50%) translateY(20px);
-      background:var(--dark); color:#fff; padding:12px 24px;
-      font-size:.82rem; letter-spacing:.08em; opacity:0;
-      transition:all .3s; pointer-events:none; z-index:200;
-    }
-    .toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
-
-    @media(max-width:900px){
-      .product-layout { grid-template-columns:1fr; gap:2rem; }
-      .gallery { position:static; }
-    }
+    @media(max-width:900px){.product-layout{grid-template-columns:1fr;gap:2rem}.gallery{position:static}}
   </style>
 </head>
 <body>
@@ -214,261 +102,270 @@
 <nav>
   <a href="index.html" class="nav-logo">Eres <span>Especial</span></a>
   <div class="nav-icons">
-    <button>🔍</button>
-    <button>♡</button>
-    <button>🛍</button>
+    <button>🔍</button><button>♡</button>
+    <button onclick="location.href='catalogo.html'">🛍</button>
     <button onclick="location.href='login.html'">👤</button>
   </div>
 </nav>
+<div class="breadcrumb" id="breadcrumb"><a href="index.html">Inicio</a> › <a href="catalogo.html">Catálogo</a> › <span id="breadNombre">Cargando…</span></div>
 
-<div class="breadcrumb">
-  <a href="index.html">Inicio</a> › <a href="catalogo.html">Catálogo</a> › Vestidos › Vestido Floral Rosa
-</div>
-
-<div class="product-layout">
-
-  <!-- GALERÍA -->
-  <div class="gallery">
-    <div class="main-img" id="mainImg">
-      <span class="badge-new">Nuevo</span>
-      <button class="btn-wish-lg" id="wishBtn" onclick="this.classList.toggle('active')">♡</button>
-      <span id="mainEmoji">👗</span>
-    </div>
-    <div class="thumbs">
-      <div class="thumb active" onclick="selectThumb(this,'👗')">👗</div>
-      <div class="thumb" onclick="selectThumb(this,'🌸')">🌸</div>
-      <div class="thumb" onclick="selectThumb(this,'💐')">💐</div>
-      <div class="thumb" onclick="selectThumb(this,'🌺')">🌺</div>
-    </div>
-  </div>
-
-  <!-- INFO -->
-  <div class="product-info">
-    <div class="prod-category">Vestidos · Colección 2025</div>
-    <h1 class="prod-title">Vestido Floral Rosa</h1>
-
-    <div class="rating">
-      <span class="stars">★★★★★</span>
-      <span class="rating-count">4.9 · 47 reseñas</span>
-    </div>
-
-    <div class="price-block">
-      <span class="current-price">$85.000</span>
-      <span class="old-price">$110.000</span>
-      <span class="save-tag">Ahorra 23%</span>
-    </div>
-
-    <p style="font-size:.88rem;line-height:1.7;color:var(--gray);margin-bottom:1.4rem;">
-      Vestido midi con estampado floral delicado. Tela liviana y fresca, ideal para el día a día y ocasiones especiales. Escote en V ajustable con lazo, falda con vuelo que abraza la silueta.
-    </p>
-
-    <hr class="divider"/>
-
-    <label class="option-label">Talla — <span id="selectedSize">Selecciona una talla</span></label>
-    <div class="size-grid">
-      <button class="size-btn unavailable" disabled>XS</button>
-      <button class="size-btn" onclick="selectSize(this,'S')">S</button>
-      <button class="size-btn" onclick="selectSize(this,'M')">M</button>
-      <button class="size-btn" onclick="selectSize(this,'L')">L</button>
-      <button class="size-btn" onclick="selectSize(this,'XL')">XL</button>
-      <button class="size-btn" onclick="selectSize(this,'2XL')">2XL</button>
-    </div>
-    <span class="size-guide" onclick="document.querySelector('[data-tab=tallas]').click()">📏 Guía de tallas</span>
-
-    <div class="qty-row">
-      <div class="qty-ctrl">
-        <button onclick="changeQty(-1)">−</button>
-        <input type="number" id="qty" value="1" min="1" max="10" readonly/>
-        <button onclick="changeQty(1)">+</button>
-      </div>
-      <span class="stock-info low">⚡ Solo 5 unidades disponibles</span>
-    </div>
-
-    <button class="btn-cart" onclick="addToCart()">🛍 Agregar al carrito</button>
-    <button class="btn-buy" onclick="buyNow()">Comprar ahora</button>
-
-    <div class="benefits">
-      <div class="benefit">🚚 Envío gratis +$150k</div>
-      <div class="benefit">↩️ Cambios en 15 días</div>
-      <div class="benefit">🔒 Pago seguro</div>
-    </div>
-  </div>
-</div>
-
-<!-- TABS -->
-<div class="tabs-section">
-  <div class="tabs">
-    <button class="tab-btn active" onclick="switchTab('descripcion',this)">Descripción</button>
-    <button class="tab-btn" data-tab="tallas" onclick="switchTab('tallas',this)">Guía de tallas</button>
-    <button class="tab-btn" onclick="switchTab('cuidados',this)">Cuidados</button>
-    <button class="tab-btn" onclick="switchTab('resenas',this)">Reseñas (47)</button>
-  </div>
-
-  <div class="tab-content active" id="tab-descripcion">
-    <p><strong>Vestido Floral Rosa</strong> — Una prenda pensada para celebrar tu feminidad con comodidad y estilo.</p>
-    <p>Confeccionado en tela viscosa con estampado floral exclusivo de nuestra colección 2025. Su corte midi favorece todo tipo de silueta y la falda con vuelo aporta movimiento y elegancia.</p>
-    <ul>
-      <li>Material: 95% Viscosa · 5% Elastano</li>
-      <li>Escote en V con lazo ajustable</li>
-      <li>Manga corta con volante</li>
-      <li>Largo midi (hasta la pantorrilla)</li>
-      <li>Disponible en tallas S a 2XL</li>
-      <li>Producción local · moda sostenible</li>
-    </ul>
-  </div>
-
-  <div class="tab-content" id="tab-tallas">
-    <p>Medidas en centímetros. Si estás entre dos tallas, elige la más grande para mayor comodidad.</p>
-    <table class="size-table">
-      <tr><th>Talla</th><th>Busto</th><th>Cintura</th><th>Cadera</th><th>Largo</th></tr>
-      <tr><td>S</td><td>84–88</td><td>66–70</td><td>90–94</td><td>110</td></tr>
-      <tr><td>M</td><td>89–93</td><td>71–75</td><td>95–99</td><td>112</td></tr>
-      <tr><td>L</td><td>94–98</td><td>76–80</td><td>100–104</td><td>114</td></tr>
-      <tr><td>XL</td><td>99–104</td><td>81–86</td><td>105–110</td><td>116</td></tr>
-      <tr><td>2XL</td><td>105–112</td><td>87–94</td><td>111–118</td><td>118</td></tr>
-    </table>
-  </div>
-
-  <div class="tab-content" id="tab-cuidados">
-    <ul>
-      <li>🧺 Lavar a máquina en ciclo delicado — agua fría (30°C máx.)</li>
-      <li>🚫 No usar secadora</li>
-      <li>🌬️ Tender a la sombra horizontalmente</li>
-      <li>♨️ Planchar a baja temperatura con tela protectora</li>
-      <li>🚫 No lavar en seco</li>
-      <li>💧 No remojar por más de 30 minutos</li>
-    </ul>
-  </div>
-
-  <div class="tab-content" id="tab-resenas">
-    <div class="review-summary">
-      <div class="big-rating">4.9</div>
-      <div>
-        <div class="stars" style="font-size:1.1rem;color:var(--rose);">★★★★★</div>
-        <div style="font-size:.78rem;color:var(--gray);">47 reseñas verificadas</div>
-      </div>
-      <div class="rating-bars">
-        <div class="bar-row"><span>5★</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><span>41</span></div>
-        <div class="bar-row"><span>4★</span><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div><span>5</span></div>
-        <div class="bar-row"><span>3★</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span>1</span></div>
-        <div class="bar-row"><span>2★</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span>0</span></div>
-        <div class="bar-row"><span>1★</span><div class="bar-track"><div class="bar-fill" style="width:0%"></div></div><span>0</span></div>
-      </div>
-    </div>
-
-    <div class="review-card">
-      <div class="review-header">
-        <span class="reviewer-name">María González ✅</span>
-        <span class="review-date">15 Mar 2025</span>
-      </div>
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">Me enamoré de este vestido desde el primer momento. La tela es suavísima y el estampado es hermoso. Me quedó perfecto en talla M. ¡Definitivamente volveré a comprar!</p>
-    </div>
-
-    <div class="review-card">
-      <div class="review-header">
-        <span class="reviewer-name">Sofía R. ✅</span>
-        <span class="review-date">2 Mar 2025</span>
-      </div>
-      <div class="review-stars">★★★★★</div>
-      <p class="review-text">Perfecto para la temporada. Llegó súper rápido y el empaque era precioso. El color es exactamente como en las fotos. Recomiendo totalmente.</p>
-    </div>
-  </div>
-</div>
-
-<!-- RELACIONADOS -->
-<div class="related-section">
-  <h2 class="section-title">También te podría gustar</h2>
-  <div class="related-grid">
-    <div class="rel-card" onclick="location.href='producto.html'">
-      <div class="rel-img">👚</div>
-      <div class="rel-name">Blusa Encaje Crema</div>
-      <div class="rel-price">$48.000</div>
-    </div>
-    <div class="rel-card" onclick="location.href='producto.html'">
-      <div class="rel-img">🌸</div>
-      <div class="rel-name">Vestido Wrap Floral</div>
-      <div class="rel-price">$90.000</div>
-    </div>
-    <div class="rel-card" onclick="location.href='producto.html'">
-      <div class="rel-img">👘</div>
-      <div class="rel-name">Falda Plisada Rosa</div>
-      <div class="rel-price">$52.000</div>
-    </div>
-    <div class="rel-card" onclick="location.href='producto.html'">
-      <div class="rel-img">🎽</div>
-      <div class="rel-name">Conjunto Lino Beige</div>
-      <div class="rel-price">$95.000</div>
-    </div>
-  </div>
+<div id="mainContent">
+  <div class="loading-product">🌸 Cargando producto…</div>
 </div>
 
 <a href="https://wa.me/1234567890" class="wa-btn" target="_blank">💬</a>
-<div class="toast" id="toast">✓ Producto agregado al carrito</div>
+<div class="toast" id="toast"></div>
 
-<script>
-function selectThumb(el, emoji) {
-  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  document.getElementById('mainEmoji').textContent = emoji;
-}
-
-function selectSize(btn, size) {
-  document.querySelectorAll('.size-btn:not(.unavailable)').forEach(b => b.classList.remove('selected'));
-  btn.classList.add('selected');
-  document.getElementById('selectedSize').textContent = size;
-}
-
-function changeQty(delta) {
-  const input = document.getElementById('qty');
-  const val = Math.max(1, Math.min(10, parseInt(input.value) + delta));
-  input.value = val;
-}
-
-function addToCart() {
-  const size = document.getElementById('selectedSize').textContent;
-  if (size === 'Selecciona una talla') { alert('Por favor selecciona una talla'); return; }
-  showToast('✓ Vestido agregado al carrito');
-}
-
-function buyNow() {
-  const size = document.getElementById('selectedSize').textContent;
-  if (size === 'Selecciona una talla') { alert('Por favor selecciona una talla'); return; }
-  location.href = 'login.html';
-}
-
-function showToast(msg) {
-  const t = document.getElementById('toast');
-  t.textContent = msg; t.classList.add('show');
-  setTimeout(() => t.classList.remove('show'), 2500);
-}
-
-function switchTab(id, btn) {
-  document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('tab-' + id).classList.add('active');
-  btn.classList.add('active');
-}
-</script>
-<!-- Firebase SDK -->
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getFirestore, collection, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+  import { initializeApp }  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, doc, getDoc, collection, getDocs, query, limit, orderBy }
+                            from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // TU CONFIGURACIÓN (cópiala de Firebase Console)
+  // ══════════════════════════════════════════════════════
+  //  ❶  PEGA AQUÍ TU CONFIGURACIÓN DE FIREBASE
+  // ══════════════════════════════════════════════════════
   const firebaseConfig = {
-     apiKey: "AIzaSyC8mt3x7D3pcntULFReiUlENESAKx-L-kU",
+    apiKey: "AIzaSyC8mt3x7D3pcntULFReiUlENESAKx-L-kU",
   authDomain: "eres-especial.firebaseapp.com",
   projectId: "eres-especial",
   storageBucket: "eres-especial.firebasestorage.app",
   messagingSenderId: "1060245560689",
   appId: "1:1060245560689:web:57c9fcbff89469ccd2ead0"
   };
+  // ══════════════════════════════════════════════════════
 
   const app = initializeApp(firebaseConfig);
   const db  = getFirestore(app);
-  const auth = getAuth(app);
+
+  const params    = new URLSearchParams(window.location.search);
+  const productId = params.get('id');
+
+  async function cargarProducto() {
+    let producto;
+
+    try {
+      if (productId) {
+        const snap = await getDoc(doc(db, 'productos', productId));
+        if (snap.exists()) producto = { id: snap.id, ...snap.data() };
+      }
+    } catch (e) {
+      console.warn('Firebase pendiente:', e.message);
+    }
+
+    // Si no hay producto (Firebase sin config o id inválido), usar ejemplo
+    if (!producto) {
+      producto = {
+        id:'ejemplo', nombre:'Vestido Floral Rosa', categoria:'Vestidos',
+        precio:85000, precioAntes:110000, tallas:['S','M','L','XL'],
+        descripcion:'Vestido midi con estampado floral delicado. Tela liviana y fresca, ideal para el día a día y ocasiones especiales.',
+        material:'95% Viscosa · 5% Elastano', stock:5,
+        imagenUrl:'', badge:'Nuevo'
+      };
+    }
+
+    renderProducto(producto);
+    cargarRelacionados(producto);
+  }
+
+  function renderProducto(p) {
+    document.title = `${p.nombre} – Eres Especial`;
+    document.getElementById('breadNombre').textContent = p.nombre;
+
+    const imgHtml = p.imagenUrl
+      ? `<img src="${p.imagenUrl}" alt="${p.nombre}"/>`
+      : `<span class="placeholder">👗</span>`;
+    const badgeHtml = p.badge ? `<span class="badge-new">${p.badge}</span>` : '';
+    const tallas    = Array.isArray(p.tallas) ? p.tallas : [];
+    const tallasHtml= tallas.map(t =>
+      `<button class="size-btn" onclick="selectSize(this,'${t}')">${t}</button>`
+    ).join('');
+    const ahorro    = p.precioAntes && p.precioAntes > p.precio
+      ? Math.round((1 - p.precio/p.precioAntes)*100) : 0;
+    const oldHtml   = p.precioAntes && p.precioAntes > p.precio
+      ? `<span class="old-price">$${Number(p.precioAntes).toLocaleString('es-CO')}</span>
+         <span class="save-tag">Ahorra ${ahorro}%</span>` : '';
+    const stockMsg  = p.stock <= 5 ? `stock-info low` : `stock-info`;
+    const stockTxt  = p.stock <= 5
+      ? `⚡ Solo ${p.stock} unidades disponibles` : `✓ En stock`;
+
+    document.getElementById('mainContent').innerHTML = `
+      <div class="product-layout">
+        <div class="gallery">
+          <div class="main-img" id="mainImg">
+            ${badgeHtml}
+            <button class="btn-wish-lg" id="wishBtn" onclick="this.classList.toggle('active')">♡</button>
+            ${imgHtml}
+          </div>
+          <div class="thumbs" id="thumbs">
+            <div class="thumb active" onclick="selectThumb(this,'${p.imagenUrl}')">
+              ${p.imagenUrl ? `<img src="${p.imagenUrl}" alt="${p.nombre}"/>` : '👗'}
+            </div>
+            <div class="thumb" onclick="selectThumb(this,'')">🌸</div>
+            <div class="thumb" onclick="selectThumb(this,'')">💐</div>
+            <div class="thumb" onclick="selectThumb(this,'')">🌺</div>
+          </div>
+        </div>
+
+        <div class="product-info">
+          <div class="prod-category">${p.categoria || ''} · Colección 2025</div>
+          <h1 class="prod-title">${p.nombre}</h1>
+          <div class="rating"><span class="stars">★★★★★</span><span class="rating-count">4.9 · 47 reseñas</span></div>
+          <div class="price-block">
+            <span class="current-price">$${Number(p.precio).toLocaleString('es-CO')}</span>
+            ${oldHtml}
+          </div>
+          <p style="font-size:.88rem;line-height:1.7;color:var(--gray);margin-bottom:1.4rem;">${p.descripcion || ''}</p>
+          <hr class="divider"/>
+          <label class="option-label">Talla — <span id="selectedSize">Selecciona una talla</span></label>
+          <div class="size-grid">${tallasHtml}</div>
+          <span class="size-guide" onclick="switchTab('tallas',document.querySelectorAll('.tab-btn')[1])">📏 Guía de tallas</span>
+          <div class="qty-row">
+            <div class="qty-ctrl">
+              <button onclick="changeQty(-1)">−</button>
+              <input type="number" id="qty" value="1" min="1" max="10" readonly/>
+              <button onclick="changeQty(1)">+</button>
+            </div>
+            <span class="${stockMsg}">${stockTxt}</span>
+          </div>
+          <button class="btn-cart" onclick="addToCart()">🛍 Agregar al carrito</button>
+          <button class="btn-buy" onclick="buyNow()">Comprar ahora</button>
+          <div class="benefits">
+            <div class="benefit">🚚 Envío gratis +$150k</div>
+            <div class="benefit">↩️ Cambios en 15 días</div>
+            <div class="benefit">🔒 Pago seguro</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tabs-section">
+        <div class="tabs">
+          <button class="tab-btn active" onclick="switchTab('descripcion',this)">Descripción</button>
+          <button class="tab-btn" onclick="switchTab('tallas',this)">Guía de tallas</button>
+          <button class="tab-btn" onclick="switchTab('cuidados',this)">Cuidados</button>
+          <button class="tab-btn" onclick="switchTab('resenas',this)">Reseñas (47)</button>
+        </div>
+        <div class="tab-content active" id="tab-descripcion">
+          <p><strong>${p.nombre}</strong> — Una prenda pensada para celebrar tu feminidad con comodidad y estilo.</p>
+          <p>${p.descripcion || ''}</p>
+          <ul>
+            ${p.material ? `<li>Material: ${p.material}</li>` : ''}
+            <li>Tallas disponibles: ${tallas.join(', ')}</li>
+            <li>Producción local · moda sostenible</li>
+          </ul>
+        </div>
+        <div class="tab-content" id="tab-tallas">
+          <p>Medidas en centímetros. Si estás entre dos tallas, elige la más grande.</p>
+          <table class="size-table">
+            <tr><th>Talla</th><th>Busto</th><th>Cintura</th><th>Cadera</th></tr>
+            <tr><td>S</td><td>84–88</td><td>66–70</td><td>90–94</td></tr>
+            <tr><td>M</td><td>89–93</td><td>71–75</td><td>95–99</td></tr>
+            <tr><td>L</td><td>94–98</td><td>76–80</td><td>100–104</td></tr>
+            <tr><td>XL</td><td>99–104</td><td>81–86</td><td>105–110</td></tr>
+            <tr><td>2XL</td><td>105–112</td><td>87–94</td><td>111–118</td></tr>
+          </table>
+        </div>
+        <div class="tab-content" id="tab-cuidados">
+          <ul>
+            <li>🧺 Lavar a máquina en ciclo delicado — agua fría (30°C máx.)</li>
+            <li>🚫 No usar secadora</li>
+            <li>🌬️ Tender a la sombra horizontalmente</li>
+            <li>♨️ Planchar a baja temperatura con tela protectora</li>
+          </ul>
+        </div>
+        <div class="tab-content" id="tab-resenas">
+          <div style="margin-bottom:1.5rem">
+            <div style="font-family:Cormorant Garamond,serif;font-size:3rem;color:var(--wine);">4.9</div>
+            <div style="color:var(--rose);font-size:1.1rem;">★★★★★</div>
+            <div style="font-size:.78rem;color:var(--gray);">47 reseñas verificadas</div>
+          </div>
+          <div style="background:#fff;padding:24px;margin-bottom:1rem;border-left:3px solid var(--blush)">
+            <div style="display:flex;justify-content:space-between"><strong>María González ✅</strong><span style="font-size:.72rem;color:var(--gray)">15 Mar 2025</span></div>
+            <div style="color:var(--rose);font-size:.8rem;margin:.4rem 0">★★★★★</div>
+            <p style="font-size:.85rem;line-height:1.7">Me enamoré de este vestido. La tela es suavísima y el estampado es hermoso. ¡Definitivamente volveré a comprar!</p>
+          </div>
+          <div style="background:#fff;padding:24px;border-left:3px solid var(--blush)">
+            <div style="display:flex;justify-content:space-between"><strong>Sofía R. ✅</strong><span style="font-size:.72rem;color:var(--gray)">2 Mar 2025</span></div>
+            <div style="color:var(--rose);font-size:.8rem;margin:.4rem 0">★★★★★</div>
+            <p style="font-size:.85rem;line-height:1.7">Perfecto para la temporada. Llegó súper rápido y el empaque era precioso. Recomiendo totalmente.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="related-section" id="relatedSection">
+        <h2 class="section-title">También te podría gustar</h2>
+        <div class="related-grid" id="relatedGrid">
+          <div style="color:var(--gray);font-size:.85rem">Cargando…</div>
+        </div>
+      </div>`;
+
+    // Exponer funciones de interacción al scope global
+    window.selectSize = function(btn, size) {
+      document.querySelectorAll('.size-btn:not(.unavailable)').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      document.getElementById('selectedSize').textContent = size;
+    };
+    window.changeQty = function(d) {
+      const inp = document.getElementById('qty');
+      inp.value = Math.max(1, Math.min(10, parseInt(inp.value) + d));
+    };
+    window.addToCart = function() {
+      const size = document.getElementById('selectedSize').textContent;
+      if (size === 'Selecciona una talla') { alert('Por favor selecciona una talla'); return; }
+      showToast('✓ ' + p.nombre + ' agregado al carrito');
+    };
+    window.buyNow = function() {
+      const size = document.getElementById('selectedSize').textContent;
+      if (size === 'Selecciona una talla') { alert('Por favor selecciona una talla'); return; }
+      location.href = 'login.html';
+    };
+    window.switchTab = function(id, btn) {
+      document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('tab-'+id).classList.add('active');
+      btn.classList.add('active');
+    };
+    window.selectThumb = function(el, url) {
+      document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+      el.classList.add('active');
+      const mainImg = document.getElementById('mainImg');
+      let img = mainImg.querySelector('img');
+      if (url) {
+        if (!img) { img = document.createElement('img'); mainImg.insertBefore(img, mainImg.firstChild); }
+        img.src = url;
+      } else if (img) { img.remove(); }
+    };
+  }
+
+  async function cargarRelacionados(prod) {
+    try {
+      const q    = query(collection(db,'productos'), orderBy('creadoEn','desc'), limit(4));
+      const snap = await getDocs(q);
+      const grid = document.getElementById('relatedGrid');
+      if (!grid) return;
+      const relacionados = snap.docs
+        .map(d => ({ id: d.id, ...d.data() }))
+        .filter(p => p.id !== prod.id)
+        .slice(0,4);
+      if (relacionados.length === 0) { grid.innerHTML = ''; return; }
+      grid.innerHTML = relacionados.map(p => {
+        const img = p.imagenUrl ? `<img src="${p.imagenUrl}" alt="${p.nombre}"/>` : '👗';
+        return `<div class="rel-card" onclick="location.href='producto.html?id=${p.id}'">
+          <div class="rel-img">${img}</div>
+          <div class="rel-name">${p.nombre}</div>
+          <div class="rel-price">$${Number(p.precio).toLocaleString('es-CO')}</div>
+        </div>`;
+      }).join('');
+    } catch (_) {}
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2500);
+  }
+  window.showToast = showToast;
+
+  cargarProducto();
 </script>
 </body>
 </html>
