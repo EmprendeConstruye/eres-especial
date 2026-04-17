@@ -3,254 +3,247 @@
 <head>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Checkout – Eres Especial</title>
+  <title>Finalizar pedido – Eres Especial</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--cream:#f5f0eb;--blush:#e8c4b8;--rose:#c4856a;--wine:#7a3d3d;--dark:#2a1a1a;--light:#faf7f4;--text:#4a3030;--gray:#9e8888;--success:#3d7a4a}
+    :root{--cream:#f5f0eb;--blush:#e8c4b8;--rose:#c4856a;--wine:#7a3d3d;--dark:#2a1a1a;--light:#faf7f4;--text:#4a3030;--gray:#9e8888;--green:#3d7a4a}
     body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text)}
-    nav{display:flex;align-items:center;justify-content:space-between;padding:16px 5%;background:rgba(250,247,244,.95);border-bottom:1px solid rgba(196,133,106,.2);position:sticky;top:0;z-index:10}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:14px 5%;background:rgba(250,247,244,.95);border-bottom:1px solid rgba(196,133,106,.2);position:sticky;top:0;z-index:10}
     .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--wine);text-decoration:none}
     .nav-logo span{font-style:italic;font-weight:300}
-    .breadcrumb{padding:16px 5%;font-size:.72rem;letter-spacing:.1em;color:var(--gray)}
+    .back-link{font-size:.78rem;color:var(--gray);text-decoration:none}
+    .back-link:hover{color:var(--rose)}
+    .breadcrumb{padding:14px 5%;font-size:.7rem;letter-spacing:.1em;color:var(--gray)}
     .breadcrumb a{color:var(--rose);text-decoration:none}
 
-    .checkout-layout{display:grid;grid-template-columns:1fr 380px;gap:2rem;padding:20px 5% 60px;align-items:start;max-width:1100px;margin:0 auto}
+    .main{display:grid;grid-template-columns:1fr 360px;gap:2rem;padding:18px 5% 60px;align-items:start;max-width:1060px;margin:0 auto}
 
-    /* PASOS */
-    .steps{display:flex;gap:0;margin-bottom:1.8rem}
-    .step{display:flex;align-items:center;gap:.5rem;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gray);padding:10px 0;border-bottom:2px solid var(--blush);flex:1}
-    .step.active{color:var(--wine);border-bottom-color:var(--wine)}
-    .step.done{color:var(--success);border-bottom-color:var(--success)}
-    .step-num{width:22px;height:22px;border-radius:50%;border:1.5px solid currentColor;display:flex;align-items:center;justify-content:center;font-size:.65rem;flex-shrink:0}
-
-    /* FORM */
-    .section-card{background:#fff;padding:28px;margin-bottom:1.2rem}
-    .section-card-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--dark);margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid var(--blush)}
-    .form-group{margin-bottom:1rem}
-    .form-group label{display:block;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text);margin-bottom:.4rem}
-    .form-group input,.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1.5px solid var(--blush);background:var(--light);font-family:'Jost',sans-serif;font-size:.88rem;color:var(--text);outline:none;transition:border-color .2s}
+    /* CARDS */
+    .card{background:#fff;padding:26px;margin-bottom:1.1rem}
+    .card-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;color:var(--dark);margin-bottom:1.1rem;padding-bottom:.7rem;border-bottom:1px solid var(--blush)}
+    .form-group{margin-bottom:.9rem}
+    .form-group label{display:block;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text);margin-bottom:.35rem}
+    .form-group input,.form-group select,.form-group textarea{width:100%;padding:10px 12px;border:1.5px solid var(--blush);background:var(--light);font-family:'Jost',sans-serif;font-size:.87rem;color:var(--text);outline:none;transition:border-color .2s}
     .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--rose)}
-    .form-group input::placeholder{color:var(--gray)}
-    .form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+    .form-group textarea{resize:vertical;min-height:60px}
+    .form-row{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
 
-    /* ENVÍO OPTIONS */
-    .shipping-option{display:flex;align-items:center;gap:.8rem;padding:14px;border:1.5px solid var(--blush);cursor:pointer;transition:border-color .2s;margin-bottom:.6rem}
-    .shipping-option.selected{border-color:var(--wine);background:rgba(122,61,61,.03)}
-    .shipping-option input[type=radio]{accent-color:var(--wine)}
-    .so-info{flex:1}
-    .so-name{font-size:.88rem;font-weight:500;color:var(--dark)}
-    .so-desc{font-size:.72rem;color:var(--gray)}
-    .so-price{font-size:.9rem;font-weight:500;color:var(--wine)}
+    /* OPCIONES RADIO */
+    .radio-opt{display:flex;align-items:center;gap:.75rem;padding:13px;border:1.5px solid var(--blush);cursor:pointer;transition:border-color .2s;margin-bottom:.5rem}
+    .radio-opt.on{border-color:var(--wine);background:rgba(122,61,61,.03)}
+    .radio-opt input[type=radio]{accent-color:var(--wine);flex-shrink:0}
+    .ro-icon{font-size:1.3rem;flex-shrink:0}
+    .ro-info{flex:1}
+    .ro-name{font-size:.86rem;font-weight:500;color:var(--dark)}
+    .ro-desc{font-size:.7rem;color:var(--gray);margin-top:.1rem}
+    .ro-price{font-size:.88rem;font-weight:500;color:var(--wine);flex-shrink:0}
+    .ro-price.free{color:var(--green)}
 
-    /* PAGO */
-    .pay-option{display:flex;align-items:center;gap:.8rem;padding:14px;border:1.5px solid var(--blush);cursor:pointer;transition:border-color .2s;margin-bottom:.6rem}
-    .pay-option.selected{border-color:var(--wine);background:rgba(122,61,61,.03)}
-    .pay-option input[type=radio]{accent-color:var(--wine)}
-    .po-icon{font-size:1.4rem}
-    .po-name{font-size:.88rem;font-weight:500;color:var(--dark)}
-    .po-desc{font-size:.72rem;color:var(--gray)}
-    .wompi-note{background:rgba(61,122,74,.06);border-left:3px solid var(--success);padding:12px 14px;font-size:.78rem;color:#2a5a3a;line-height:1.6;margin-top:.8rem}
-    .wompi-note strong{display:block;margin-bottom:.3rem}
+    /* NEQUI INFO */
+    .pago-info{background:rgba(61,122,74,.06);border-left:3px solid var(--green);padding:12px 14px;font-size:.78rem;color:#2a5a3a;line-height:1.6;margin-top:.7rem;display:none}
+    .pago-info.show{display:block}
+    .pago-info strong{display:block;margin-bottom:.25rem}
 
     /* RESUMEN */
-    .summary-card{background:#fff;padding:24px;position:sticky;top:80px}
-    .summary-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--dark);margin-bottom:1.2rem;padding-bottom:.8rem;border-bottom:1px solid var(--blush)}
-    .summary-item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid rgba(232,196,184,.3)}
-    .si-img{width:52px;height:64px;object-fit:cover;background:var(--cream);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.4rem;border:1px solid var(--blush)}
-    .si-img img{width:100%;height:100%;object-fit:cover}
-    .si-info{flex:1}
-    .si-name{font-family:'Cormorant Garamond',serif;font-size:.95rem;color:var(--dark)}
-    .si-detail{font-size:.7rem;color:var(--gray)}
-    .si-price{font-size:.9rem;font-weight:500;color:var(--wine)}
-    .summary-totals{padding-top:14px}
-    .total-row{display:flex;justify-content:space-between;font-size:.85rem;margin-bottom:.5rem;color:var(--text)}
-    .total-row.envio-gratis{color:var(--success)}
-    .total-row.grand{font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:300;color:var(--dark);border-top:1.5px solid var(--blush);padding-top:.8rem;margin-top:.3rem}
+    .summary{background:#fff;padding:22px;position:sticky;top:68px}
+    .sum-title{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;color:var(--dark);margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid var(--blush)}
+    .s-item{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid rgba(232,196,184,.3)}
+    .s-thumb{width:48px;height:60px;flex-shrink:0;background:var(--cream);border:1px solid var(--blush);display:flex;align-items:center;justify-content:center;font-size:1.4rem;overflow:hidden}
+    .s-thumb img{width:100%;height:100%;object-fit:cover}
+    .s-info{flex:1;min-width:0}
+    .s-name{font-family:'Cormorant Garamond',serif;font-size:.9rem;color:var(--dark);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+    .s-det{font-size:.66rem;color:var(--gray)}
+    .s-price{font-size:.88rem;font-weight:500;color:var(--wine);flex-shrink:0}
+    .totals{padding-top:12px}
+    .t-row{display:flex;justify-content:space-between;font-size:.83rem;margin-bottom:.45rem;color:var(--text)}
+    .t-row.free{color:var(--green)}
+    .t-row.grand{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:300;color:var(--dark);border-top:1.5px solid var(--blush);padding-top:.7rem;margin-top:.2rem}
 
-    .btn-pay{width:100%;padding:15px;background:var(--wine);color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;transition:background .25s;margin-top:1rem}
-    .btn-pay:hover{background:var(--rose)}
-    .btn-pay:disabled{background:var(--gray);cursor:not-allowed}
-    .btn-wa{width:100%;padding:13px;background:#25D366;color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;transition:opacity .2s;margin-top:.6rem}
-    .btn-wa:hover{opacity:.88}
-
-    .secure-note{text-align:center;font-size:.7rem;color:var(--gray);margin-top:.8rem;display:flex;align-items:center;justify-content:center;gap:.4rem}
+    .btn-confirm{width:100%;padding:14px;background:var(--wine);color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;transition:background .22s;margin-top:.9rem}
+    .btn-confirm:hover{background:var(--rose)}
+    .btn-confirm:disabled{background:var(--gray);cursor:not-allowed}
+    .btn-wa-co{width:100%;padding:12px;background:#25D366;color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:opacity .2s;margin-top:.5rem}
+    .btn-wa-co:hover{opacity:.86}
+    .secure{text-align:center;font-size:.68rem;color:var(--gray);margin-top:.7rem;display:flex;align-items:center;justify-content:center;gap:.35rem}
 
     /* ÉXITO */
-    .success-screen{display:none;text-align:center;padding:60px 20px}
-    .success-screen.show{display:block}
-    .success-icon{font-size:4rem;margin-bottom:1rem}
-    .success-title{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--wine);margin-bottom:.8rem}
-    .success-sub{color:var(--gray);line-height:1.7;font-size:.9rem}
+    .success-wrap{display:none;text-align:center;padding:70px 20px;max-width:520px;margin:0 auto}
+    .success-wrap.show{display:block}
+    .s-icon{font-size:4rem;margin-bottom:1rem}
+    .s-title{font-family:'Cormorant Garamond',serif;font-size:2.2rem;color:var(--wine);margin-bottom:.8rem}
+    .s-sub{color:var(--gray);line-height:1.7;font-size:.88rem}
+    .s-sub a{color:var(--rose)}
 
-    /* TOAST */
-    .toast{position:fixed;bottom:28px;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;padding:11px 22px;font-size:.8rem;opacity:0;transition:all .3s;pointer-events:none;z-index:200}
-    .toast.show{opacity:1}
+    /* CARRITO VACÍO */
+    .empty-cart{text-align:center;padding:80px 20px;grid-column:1/-1}
+    .ec-icon{font-size:3rem;margin-bottom:1rem}
 
-    .wa-btn{position:fixed;bottom:28px;right:28px;z-index:99;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,.4)}
+    .toast{position:fixed;bottom:26px;left:50%;transform:translateX(-50%);background:var(--dark);color:#fff;padding:10px 20px;font-size:.78rem;opacity:0;transition:all .28s;pointer-events:none;z-index:200;border-radius:2px}
+    .toast.on{opacity:1}
 
-    @media(max-width:860px){.checkout-layout{grid-template-columns:1fr}.summary-card{position:static}.form-row-2{grid-template-columns:1fr}}
+    .wa-fab{position:fixed;bottom:26px;right:26px;z-index:97;width:50px;height:50px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.4rem;text-decoration:none;box-shadow:0 5px 16px rgba(37,211,102,.4)}
+
+    @media(max-width:800px){.main{grid-template-columns:1fr}.summary{position:static}.form-row{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
 
-<script src="firebase-config.js"></script>
-
 <nav>
   <a href="index.html" class="nav-logo">Eres <span>Especial</span></a>
-  <a href="catalogo.html" style="font-size:.78rem;color:var(--gray);text-decoration:none">← Seguir comprando</a>
+  <a href="catalogo.html" class="back-link">← Seguir comprando</a>
 </nav>
 <div class="breadcrumb">
-  <a href="index.html">Inicio</a> › <a href="catalogo.html">Catálogo</a> › Checkout
+  <a href="index.html">Inicio</a> › <a href="catalogo.html">Catálogo</a> › Finalizar pedido
 </div>
 
 <!-- PANTALLA ÉXITO -->
-<div class="success-screen" id="successScreen">
-  <div class="success-icon">🌸</div>
-  <h2 class="success-title">¡Pedido confirmado!</h2>
-  <p class="success-sub">Gracias por tu compra. Te contactaremos por WhatsApp<br/>para coordinar la entrega.<br/><br/>
-    <a href="catalogo.html" style="color:var(--rose)">← Seguir comprando</a>
+<div class="success-wrap" id="successWrap">
+  <div class="s-icon">🌸</div>
+  <h2 class="s-title">¡Pedido recibido!</h2>
+  <p class="s-sub">
+    Gracias por tu compra. Te contactaremos pronto por WhatsApp<br/>
+    para confirmar los detalles y coordinar la entrega.<br/><br/>
+    <a href="catalogo.html">← Seguir comprando</a>
   </p>
 </div>
 
-<div class="checkout-layout" id="checkoutLayout">
+<!-- CHECKOUT LAYOUT -->
+<div class="main" id="checkoutMain">
 
-  <!-- FORMULARIO IZQUIERDO -->
-  <div>
-    <div class="steps">
-      <div class="step active"><div class="step-num">1</div> Datos</div>
-      <div class="step" id="step2"><div class="step-num">2</div> Envío</div>
-      <div class="step" id="step3"><div class="step-num">3</div> Pago</div>
-    </div>
+  <!-- FORMULARIO -->
+  <div id="formArea">
 
     <!-- DATOS PERSONALES -->
-    <div class="section-card">
-      <div class="section-card-title">📋 Datos personales</div>
-      <div class="form-row-2">
+    <div class="card">
+      <div class="card-title">📋 Datos personales</div>
+      <div class="form-row">
         <div class="form-group"><label>Nombre *</label><input type="text" id="cNombre" placeholder="Tu nombre"/></div>
         <div class="form-group"><label>Apellido *</label><input type="text" id="cApellido" placeholder="Tu apellido"/></div>
       </div>
-      <div class="form-row-2">
+      <div class="form-row">
         <div class="form-group"><label>WhatsApp *</label><input type="tel" id="cWa" placeholder="+57 300 000 0000"/></div>
-        <div class="form-group"><label>Correo electrónico</label><input type="email" id="cEmail" placeholder="tucorreo@email.com"/></div>
+        <div class="form-group"><label>Correo (opcional)</label><input type="email" id="cEmail" placeholder="tucorreo@email.com"/></div>
       </div>
-      <div class="form-group"><label>Documento de identidad</label><input type="text" id="cDoc" placeholder="Cédula o NIT (requerido para pago online)"/></div>
     </div>
 
-    <!-- MÉTODO DE ENVÍO -->
-    <div class="section-card">
-      <div class="section-card-title">🚚 Método de entrega</div>
-      <div class="shipping-option selected" onclick="selectShipping(this,'domicilio',15000)" id="ship-dom">
+    <!-- ENVÍO -->
+    <div class="card">
+      <div class="card-title">🚚 Método de entrega</div>
+
+      <div class="radio-opt on" id="optDom" onclick="elegirEnvio(this,'domicilio',15000)">
         <input type="radio" name="envio" value="domicilio" checked/>
-        <div class="so-info">
-          <div class="so-name">Domicilio en Medellín</div>
-          <div class="so-desc">Entrega en 24–48 horas hábiles</div>
+        <div class="ro-icon">🏠</div>
+        <div class="ro-info">
+          <div class="ro-name">Domicilio en Medellín</div>
+          <div class="ro-desc">Entrega en 24–48 horas hábiles</div>
         </div>
-        <div class="so-price" id="price-dom">$15.000</div>
-      </div>
-      <div class="shipping-option" onclick="selectShipping(this,'gratis',0)" id="ship-grat">
-        <input type="radio" name="envio" value="gratis"/>
-        <div class="so-info">
-          <div class="so-name">Envío gratis (pedidos +$150.000)</div>
-          <div class="so-desc">Entrega en 24–48 horas hábiles en Medellín</div>
-        </div>
-        <div class="so-price" style="color:var(--success)">GRATIS</div>
-      </div>
-      <div class="shipping-option" onclick="selectShipping(this,'tienda',0)" id="ship-tien">
-        <input type="radio" name="envio" value="tienda"/>
-        <div class="so-info">
-          <div class="so-name">📍 Recoger en tienda</div>
-          <div class="so-desc" id="tiendaDirDesc">Sin costo adicional · Disponible el mismo día</div>
-        </div>
-        <div class="so-price" style="color:var(--success)">GRATIS</div>
+        <div class="ro-price" id="domPrice">$15.000</div>
       </div>
 
-      <!-- Dirección de envío (solo para domicilio) -->
-      <div id="addressSection" style="margin-top:1rem">
-        <div class="form-group"><label>Dirección de entrega *</label><input type="text" id="cDireccion" placeholder="Ej: Calle 10 # 50-20, Apto 301"/></div>
-        <div class="form-row-2">
-          <div class="form-group"><label>Barrio</label><input type="text" id="cBarrio" placeholder="Ej: El Poblado"/></div>
-          <div class="form-group"><label>Ciudad</label><input type="text" id="cCiudad" placeholder="Medellín" value="Medellín"/></div>
+      <div class="radio-opt" id="optGratis" onclick="elegirEnvio(this,'gratis',0)">
+        <input type="radio" name="envio" value="gratis"/>
+        <div class="ro-icon">🎁</div>
+        <div class="ro-info">
+          <div class="ro-name">Envío gratis (pedidos +$150.000)</div>
+          <div class="ro-desc">Entrega en 24–48 horas hábiles</div>
+        </div>
+        <div class="ro-price free">GRATIS</div>
+      </div>
+
+      <div class="radio-opt" id="optTienda" onclick="elegirEnvio(this,'tienda',0)">
+        <input type="radio" name="envio" value="tienda"/>
+        <div class="ro-icon">📍</div>
+        <div class="ro-info">
+          <div class="ro-name">Recoger en tienda</div>
+          <div class="ro-desc" id="tiendaDesc">Sin costo · Disponible el mismo día</div>
+        </div>
+        <div class="ro-price free">GRATIS</div>
+      </div>
+
+      <!-- Dirección (visible solo para domicilio/gratis) -->
+      <div id="addrSection" style="margin-top:1rem">
+        <div class="form-group"><label>Dirección de entrega *</label>
+          <input type="text" id="cDir" placeholder="Calle 10 # 50-20, Apto 301"/></div>
+        <div class="form-row">
+          <div class="form-group"><label>Barrio</label><input type="text" id="cBarrio" placeholder="El Poblado"/></div>
+          <div class="form-group"><label>Ciudad</label><input type="text" id="cCiudad" value="Medellín" placeholder="Medellín"/></div>
         </div>
         <div class="form-group"><label>Indicaciones adicionales</label>
-          <textarea id="cNotas" rows="2" placeholder="Ej: Timbre 3, edificio azul, dejar con el portero..."></textarea>
-        </div>
+          <textarea id="cNotas" placeholder="Ej: Timbre 3, dejar con portero..."></textarea></div>
       </div>
     </div>
 
-    <!-- MÉTODO DE PAGO -->
-    <div class="section-card">
-      <div class="section-card-title">💳 Método de pago</div>
+    <!-- PAGO — SIN WOMPI -->
+    <div class="card">
+      <div class="card-title">💳 Método de pago</div>
 
-      <div class="pay-option selected" onclick="selectPay(this,'wompi')" id="pay-wompi">
-        <input type="radio" name="pago" value="wompi" checked/>
-        <div class="po-icon">💳</div>
-        <div class="so-info">
-          <div class="po-name">Tarjeta débito / crédito · PSE · Nequi</div>
-          <div class="po-desc">Pago seguro con Wompi (Bancolombia) · Todas las tarjetas</div>
+      <div class="radio-opt on" id="payNequi" onclick="elegirPago(this,'nequi')">
+        <input type="radio" name="pago" value="nequi" checked/>
+        <div class="ro-icon">📱</div>
+        <div class="ro-info">
+          <div class="ro-name">Nequi / Daviplata</div>
+          <div class="ro-desc">Transferencia digital · Te enviamos el número por WhatsApp</div>
         </div>
       </div>
-      <div class="pay-option" onclick="selectPay(this,'nequi_qr')" id="pay-nequi">
-        <input type="radio" name="pago" value="nequi_qr"/>
-        <div class="po-icon">📱</div>
-        <div class="so-info">
-          <div class="po-name">Nequi / Daviplata (transferencia)</div>
-          <div class="po-desc">Te enviamos el número por WhatsApp para hacer el pago</div>
-        </div>
-      </div>
-      <div class="pay-option" onclick="selectPay(this,'contra')" id="pay-contra">
+
+      <div class="radio-opt" id="payCon" onclick="elegirPago(this,'contra')">
         <input type="radio" name="pago" value="contra"/>
-        <div class="po-icon">💵</div>
-        <div class="so-info">
-          <div class="po-name">Contra entrega</div>
-          <div class="po-desc">Pagas en efectivo al recibir tu pedido</div>
-        </div>
-      </div>
-      <div class="pay-option" onclick="selectPay(this,'tienda_pago')" id="pay-tienda">
-        <input type="radio" name="pago" value="tienda_pago"/>
-        <div class="po-icon">🏪</div>
-        <div class="so-info">
-          <div class="po-name">Pagar en tienda</div>
-          <div class="po-desc">Efectivo, tarjeta o Nequi al recoger en tienda</div>
+        <div class="ro-icon">💵</div>
+        <div class="ro-info">
+          <div class="ro-name">Contra entrega</div>
+          <div class="ro-desc">Pagas en efectivo cuando recibes tu pedido</div>
         </div>
       </div>
 
-      <div class="wompi-note" id="wompiNote">
-        <strong>🔒 Pago 100% seguro con Wompi</strong>
-        Wompi es la pasarela de Bancolombia. Acepta todas las tarjetas colombianas, PSE, Nequi y Daviplata.
-        Tus datos están protegidos con cifrado SSL.
-        <br/><br/>
-        ⚙️ <strong>Para activar:</strong> Regístrate gratis en <a href="https://wompi.com" target="_blank" style="color:var(--wine)">wompi.com</a>,
-        obtén tu <em>Public Key</em> y reemplaza <code>pub_test_XXXX</code> en este archivo.
+      <div class="radio-opt" id="payTienda" onclick="elegirPago(this,'tienda_pago')">
+        <input type="radio" name="pago" value="tienda_pago"/>
+        <div class="ro-icon">🏪</div>
+        <div class="ro-info">
+          <div class="ro-name">Pagar en tienda</div>
+          <div class="ro-desc">Efectivo, tarjeta o Nequi al recoger</div>
+        </div>
+      </div>
+
+      <!-- Info contextual según método -->
+      <div class="pago-info show" id="infoNequi">
+        <strong>📱 Cómo pagar con Nequi/Daviplata</strong>
+        Al confirmar tu pedido te contactaremos por WhatsApp con el número de cuenta para hacer la transferencia.
+        Una vez confirmado el pago, procesamos tu pedido de inmediato.
+      </div>
+      <div class="pago-info" id="infoContra">
+        <strong>💵 Contra entrega</strong>
+        Pagas en efectivo al momento de recibir tu pedido en casa.
+        Ten el monto exacto listo para agilizar la entrega.
+      </div>
+      <div class="pago-info" id="infoTienda">
+        <strong>🏪 Pago en tienda</strong>
+        Aceptamos efectivo, tarjeta débito/crédito, Nequi y Daviplata directamente en tienda.
       </div>
     </div>
   </div>
 
   <!-- RESUMEN DERECHO -->
   <div>
-    <div class="summary-card">
-      <div class="summary-title">Resumen del pedido</div>
-      <div id="summaryItems">
-        <p style="color:var(--gray);font-size:.85rem;text-align:center;padding:20px">Cargando carrito...</p>
+    <div class="summary">
+      <div class="sum-title">Resumen del pedido</div>
+      <div id="sumItems"><p style="color:var(--gray);font-size:.82rem;text-align:center;padding:16px">Cargando...</p></div>
+      <div class="totals" id="sumTotals" style="display:none">
+        <div class="t-row"><span>Subtotal</span><span id="sumSub">$0</span></div>
+        <div class="t-row" id="envioRow"><span>Envío</span><span id="sumEnvio">$15.000</span></div>
+        <div class="t-row grand"><span>Total</span><span id="sumTotal">$0</span></div>
       </div>
-      <div class="summary-totals" id="summaryTotals" style="display:none">
-        <div class="total-row"><span>Subtotal</span><span id="sumSubtotal">$0</span></div>
-        <div class="total-row" id="sumEnvioRow"><span>Envío</span><span id="sumEnvio">$15.000</span></div>
-        <div class="total-row grand"><span>Total</span><span id="sumTotal">$0</span></div>
-      </div>
-      <button class="btn-pay" id="btnPay" onclick="procesarPago()">
-        🔒 Confirmar y pagar
+      <button class="btn-confirm" id="btnConfirm" onclick="confirmarPedido()">
+        ✓ Confirmar pedido
       </button>
-      <button class="btn-wa" onclick="pedirPorWhatsApp()">
-        💬 Confirmar por WhatsApp
-      </button>
-      <div class="secure-note">🔒 Pago seguro · Datos protegidos</div>
+      <button class="btn-wa-co" onclick="pedidoWA()">💬 Confirmar por WhatsApp</button>
+      <div class="secure">🔒 Datos protegidos · Pedido seguro</div>
     </div>
   </div>
 </div>
 
 <div class="toast" id="toast"></div>
-<a id="waBtn" href="#" class="wa-btn" target="_blank">💬</a>
+<a id="waFab" href="#" class="wa-fab" target="_blank">💬</a>
 
 <script type="module">
   import { initializeApp }   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -259,248 +252,221 @@
   import { getAuth, onAuthStateChanged }
                              from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-  const cfg    = window.FIREBASE_CONFIG;
-  const waNum  = window.WA_NUMBER || "573207410290";
-  const storeAddr = window.STORE_CONFIG?.address || "Medellín, Colombia";
+  /* ═══════════════════════════════════════════════════════
+     ⚠️  PEGA AQUÍ TU CONFIGURACIÓN DE FIREBASE
+  ═══════════════════════════════════════════════════════ */
+  const FB = {
+    apiKey:            "PEGA_TU_apiKey",
+    authDomain:        "PEGA_TU_authDomain",
+    projectId:         "PEGA_TU_projectId",
+    messagingSenderId: "PEGA_TU_messagingSenderId",
+    appId:             "PEGA_TU_appId"
+  };
+  /* ════════════════════════════════════════════════════════ */
+  const WA_NUM    = "573207410290";
+  const STORE_ADDR= "Escribe aquí tu dirección completa, Medellín";
 
-  document.getElementById('waBtn').href =
-    `https://wa.me/${waNum}?text=Hola%2C%20tengo%20una%20pregunta%20sobre%20mi%20pedido%20%F0%9F%8C%B8`;
-  document.getElementById('tiendaDirDesc').textContent =
-    `Sin costo · Recoge en: ${storeAddr}`;
+  document.getElementById('tiendaDesc').textContent =
+    `Sin costo · Recoge en: ${STORE_ADDR}`;
+  document.getElementById('waFab').href =
+    `https://wa.me/${WA_NUM}?text=Hola%2C%20tengo%20una%20duda%20sobre%20mi%20pedido%20%F0%9F%8C%B8`;
 
-  const cfgOk = cfg && cfg.apiKey && !cfg.apiKey.includes('PEGA');
-  let db=null, auth=null, currentUser=null;
+  const cfgOk = FB.apiKey && !FB.apiKey.includes('PEGA');
+  let db = null, auth = null, currentUser = null;
+
   if (cfgOk) {
     try {
-      const app=initializeApp(cfg);
-      db=getFirestore(app);
-      auth=getAuth(app);
+      const app = initializeApp(FB);
+      db   = getFirestore(app);
+      auth = getAuth(app);
       onAuthStateChanged(auth, u => {
         currentUser = u;
-        if (u) {
-          // Prellenar datos si ya está logueada
-          const [n,...rest] = (u.displayName||'').split(' ');
+        if (u?.displayName) {
+          const [n,...r] = u.displayName.split(' ');
           if (n) document.getElementById('cNombre').value = n;
-          if (rest.length) document.getElementById('cApellido').value = rest.join(' ');
+          if (r.length) document.getElementById('cApellido').value = r.join(' ');
           if (u.email) document.getElementById('cEmail').value = u.email;
         }
       });
-    } catch(e){ console.error(e); }
+    } catch(e) { console.error(e); }
   }
 
-  // ── CARRITO ───────────────────────────────────────────────
-  let cart          = JSON.parse(localStorage.getItem('ee_cart') || '[]');
-  let shippingCost  = 15000;
-  let payMethod     = 'wompi';
+  /* ─── CARRITO ───────────────────────────────────────── */
+  const carrito = JSON.parse(localStorage.getItem('ee_cart') || '[]');
 
-  if (cart.length === 0) {
-    document.getElementById('checkoutLayout').innerHTML =
-      `<div style="text-align:center;padding:80px 20px;grid-column:1/-1">
-        <div style="font-size:3rem;margin-bottom:1rem">🛍</div>
+  if (carrito.length === 0) {
+    document.getElementById('checkoutMain').innerHTML =
+      `<div class="empty-cart">
+        <div class="ec-icon">🛍</div>
         <p style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--wine)">Tu carrito está vacío</p>
-        <a href="catalogo.html" style="color:var(--rose);font-size:.85rem;display:block;margin-top:1rem">← Volver al catálogo</a>
+        <a href="catalogo.html" style="color:var(--rose);font-size:.85rem;display:block;margin-top:.8rem">← Volver al catálogo</a>
       </div>`;
-    return;
+  } else {
+    renderResumen();
+    ajustarEnvioPorSubtotal();
   }
 
-  // Subtotal
-  const subtotal = cart.reduce((s,i) => s + i.precio * i.qty, 0);
-  // Si subtotal >= 150000 → mostrar envío gratis
-  if (subtotal >= 150000) {
-    shippingCost = 0;
-    document.getElementById('ship-dom').style.display  = 'none';
-    document.getElementById('ship-grat').querySelector('input').checked = true;
-    document.getElementById('ship-grat').classList.add('selected');
-    document.getElementById('ship-dom').classList.remove('selected');
+  const subtotal = carrito.reduce((s,i) => s + i.precio * i.qty, 0);
+  let envCosto   = subtotal >= 150000 ? 0 : 15000;
+  let metPago    = 'nequi';
+
+  function ajustarEnvioPorSubtotal() {
+    if (subtotal >= 150000) {
+      envCosto = 0;
+      document.getElementById('optDom').style.display = 'none';
+      document.getElementById('optGratis').querySelector('input').checked = true;
+      document.getElementById('optGratis').classList.add('on');
+      document.getElementById('optDom').classList.remove('on');
+    }
+    renderTotales();
   }
 
   function renderResumen() {
-    const items = document.getElementById('summaryItems');
-    items.innerHTML = cart.map(item => {
-      const img = item.imagenUrl
-        ? `<img src="${item.imagenUrl}" alt="${item.nombre}"/>`
-        : '👗';
-      return `<div class="summary-item">
-        <div class="si-img">${img}</div>
-        <div class="si-info">
-          <div class="si-name">${item.nombre}</div>
-          <div class="si-detail">T: ${item.talla} · Cant: ${item.qty}</div>
+    document.getElementById('sumItems').innerHTML = carrito.map(item => {
+      const th = item.imagenUrl ? `<img src="${item.imagenUrl}" alt="${item.nombre}"/>` : '👗';
+      return `<div class="s-item">
+        <div class="s-thumb">${th}</div>
+        <div class="s-info">
+          <div class="s-name">${item.nombre}</div>
+          <div class="s-det">T: ${item.talla} · Cant: ${item.qty}</div>
         </div>
-        <div class="si-price">$${(item.precio*item.qty).toLocaleString('es-CO')}</div>
+        <div class="s-price">$${(item.precio*item.qty).toLocaleString('es-CO')}</div>
       </div>`;
     }).join('');
-
-    document.getElementById('sumSubtotal').textContent = '$' + subtotal.toLocaleString('es-CO');
-    document.getElementById('sumEnvio').textContent    = shippingCost > 0
-      ? '$' + shippingCost.toLocaleString('es-CO') : 'GRATIS';
-    if (shippingCost === 0) {
-      document.getElementById('sumEnvioRow').className = 'total-row envio-gratis';
-    }
-    document.getElementById('sumTotal').textContent = '$' + (subtotal + shippingCost).toLocaleString('es-CO');
-    document.getElementById('summaryTotals').style.display = 'block';
-    document.getElementById('step2').classList.add('done');
-    document.getElementById('step3').classList.add('active');
+    document.getElementById('sumTotals').style.display = 'block';
+    renderTotales();
   }
 
-  // ── EVENTOS ENVÍO Y PAGO ──────────────────────────────────
-  window.selectShipping = function(el, tipo, cost) {
-    document.querySelectorAll('.shipping-option').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
+  function renderTotales() {
+    const total = subtotal + envCosto;
+    document.getElementById('sumSub').textContent   = '$' + subtotal.toLocaleString('es-CO');
+    document.getElementById('sumEnvio').textContent = envCosto > 0
+      ? '$' + envCosto.toLocaleString('es-CO') : 'GRATIS';
+    document.getElementById('sumTotal').textContent = '$' + total.toLocaleString('es-CO');
+    const er = document.getElementById('envioRow');
+    er.className = envCosto === 0 ? 't-row free' : 't-row';
+  }
+
+  /* ─── EVENTOS RADIO ─────────────────────────────────── */
+  window.elegirEnvio = function(el, tipo, costo) {
+    document.querySelectorAll('[id^=opt]').forEach(o => o.classList.remove('on'));
+    el.classList.add('on');
     el.querySelector('input').checked = true;
-    shippingCost = subtotal >= 150000 ? 0 : cost;
-    document.getElementById('addressSection').style.display =
-      (tipo === 'tienda') ? 'none' : 'block';
-    renderResumen();
+    envCosto = subtotal >= 150000 ? 0 : costo;
+    document.getElementById('addrSection').style.display =
+      tipo === 'tienda' ? 'none' : 'block';
+    renderTotales();
   };
 
-  window.selectPay = function(el, method) {
-    document.querySelectorAll('.pay-option').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
+  window.elegirPago = function(el, met) {
+    document.querySelectorAll('[id^=pay]').forEach(o => o.classList.remove('on'));
+    el.classList.add('on');
     el.querySelector('input').checked = true;
-    payMethod = method;
-    document.getElementById('wompiNote').style.display = method === 'wompi' ? 'block' : 'none';
+    metPago = met;
+    // Mostrar info contextual
+    ['infoNequi','infoContra','infoTienda'].forEach(id =>
+      document.getElementById(id).classList.remove('show'));
+    const map = {nequi:'infoNequi', contra:'infoContra', tienda_pago:'infoTienda'};
+    if (map[met]) document.getElementById(map[met]).classList.add('show');
   };
 
-  // ── PROCESAR PAGO ─────────────────────────────────────────
-  window.procesarPago = async function() {
-    const nombre    = document.getElementById('cNombre').value.trim();
-    const apellido  = document.getElementById('cApellido').value.trim();
-    const wa        = document.getElementById('cWa').value.trim();
-    const email     = document.getElementById('cEmail').value.trim();
-    const doc       = document.getElementById('cDoc').value.trim();
-    const direccion = document.getElementById('cDireccion')?.value?.trim() || 'Recoge en tienda';
-    const barrio    = document.getElementById('cBarrio')?.value?.trim() || '';
-    const ciudad    = document.getElementById('cCiudad')?.value?.trim() || 'Medellín';
-    const notas     = document.getElementById('cNotas')?.value?.trim() || '';
-    const envioTipo = document.querySelector('input[name=envio]:checked')?.value || 'domicilio';
+  /* ─── CONFIRMAR PEDIDO ──────────────────────────────── */
+  window.confirmarPedido = async function() {
+    const nombre   = document.getElementById('cNombre').value.trim();
+    const apellido = document.getElementById('cApellido').value.trim();
+    const wa       = document.getElementById('cWa').value.trim();
+    const email    = document.getElementById('cEmail').value.trim();
+    const envTipo  = document.querySelector('input[name=envio]:checked')?.value || 'domicilio';
+    let   dir      = 'Recoge en tienda';
 
-    if (!nombre || !wa) { showToast('⚠️ Completa nombre y WhatsApp'); return; }
-    if (envioTipo !== 'tienda' && envioTipo !== 'tienda_pago' && !direccion) {
-      showToast('⚠️ Ingresa la dirección de entrega'); return;
+    if (!nombre || !wa) { toast('⚠️ Nombre y WhatsApp son obligatorios'); return; }
+    if (envTipo !== 'tienda') {
+      dir = document.getElementById('cDir').value.trim();
+      const barrio = document.getElementById('cBarrio').value.trim();
+      const ciudad = document.getElementById('cCiudad').value.trim();
+      if (!dir) { toast('⚠️ Escribe tu dirección de entrega'); return; }
+      dir = `${dir}${barrio ? ', ' + barrio : ''}, ${ciudad}`;
     }
 
-    const total = subtotal + shippingCost;
+    const total = subtotal + envCosto;
     const pedido = {
-      cliente:  nombre + ' ' + apellido,
-      whatsapp: wa, email, documento: doc,
-      direccion: envioTipo === 'tienda' ? 'Recoge en tienda' : `${direccion}, ${barrio}, ${ciudad}`,
-      notas, envio: envioTipo,
-      productos: cart.map(i => ({ id:i.id, nombre:i.nombre, talla:i.talla, qty:i.qty, precio:i.precio })),
-      subtotal, costoEnvio: shippingCost, total,
-      metodoPago: payMethod,
-      estado: 'pendiente',
-      creadoEn: Timestamp.now(),
-      fecha: new Date().toLocaleDateString('es-CO')
+      cliente:   `${nombre} ${apellido}`.trim(),
+      whatsapp:  wa, email,
+      direccion: dir,
+      notas:     document.getElementById('cNotas')?.value?.trim() || '',
+      envio:     envTipo,
+      productos: carrito.map(i => ({ id:i.id, nombre:i.nombre, talla:i.talla, qty:i.qty, precio:i.precio })),
+      subtotal, costoEnvio: envCosto, total,
+      metodoPago: metPago,
+      estado:    'pendiente',
+      fecha:     new Date().toLocaleDateString('es-CO'),
+      creadoEn:  Timestamp.now()
     };
 
-    const btn = document.getElementById('btnPay');
-    btn.disabled = true; btn.textContent = 'Procesando...';
+    const btn = document.getElementById('btnConfirm');
+    btn.disabled = true; btn.textContent = 'Guardando pedido...';
 
-    // Según método de pago:
-    if (payMethod === 'wompi') {
-      await guardarPedido(pedido);
-      iniciarWompi(nombre, apellido, email, doc, wa, total);
-    } else if (payMethod === 'nequi_qr') {
-      await guardarPedido(pedido);
-      pedirPorWhatsApp(pedido);
+    try {
+      if (db) {
+        await addDoc(collection(db,'pedidos'), pedido);
+      }
+      // Notificar por WhatsApp automáticamente
+      notificarWA(pedido);
+      localStorage.removeItem('ee_cart');
       mostrarExito();
-    } else if (payMethod === 'contra' || payMethod === 'tienda_pago') {
-      await guardarPedido(pedido);
-      pedirPorWhatsApp(pedido);
-      mostrarExito();
+    } catch(e) {
+      toast('Error al guardar el pedido. Intenta por WhatsApp.');
+      console.error(e);
+      btn.disabled = false; btn.textContent = '✓ Confirmar pedido';
     }
-
-    btn.disabled = false; btn.textContent = '🔒 Confirmar y pagar';
   };
 
-  async function guardarPedido(pedido) {
-    if (!db) { console.warn('Firebase no conectado, pedido no guardado en BD'); return; }
-    try { await addDoc(collection(db,'pedidos'), pedido); }
-    catch(e) { console.error('Error guardando pedido:', e.message); }
-  }
-
-  function iniciarWompi(nombre, apellido, email, doc, wa, total) {
-    // ══════════════════════════════════════════════════════
-    //  WOMPI — PASARELA DE PAGO GRATIS PARA COLOMBIA
-    //  1. Regístrate en wompi.com
-    //  2. Obtén tu Public Key (empieza con pub_test_ o pub_prod_)
-    //  3. Reemplaza "pub_test_REEMPLAZA_CON_TU_PUBLIC_KEY" abajo
-    //  Wompi no cobra mensualidad — solo comisión por transacción (~2.9%)
-    // ══════════════════════════════════════════════════════
-    const PUBLIC_KEY = "pub_test_REEMPLAZA_CON_TU_PUBLIC_KEY";
-
-    if (PUBLIC_KEY.includes('REEMPLAZA')) {
-      // Wompi no configurado → usar WhatsApp como fallback
-      showToast('💬 Redirigiendo a WhatsApp para confirmar pago...');
-      setTimeout(() => { pedirPorWhatsApp(); mostrarExito(); }, 1200);
-      return;
-    }
-
-    const currency    = "COP";
-    const amountInCents = total * 100;
-    const reference   = `EE-${Date.now()}`;
-    const redirectUrl = window.location.origin + '/checkout.html?status=approved';
-
-    // Cargar widget de Wompi
-    const script  = document.createElement('script');
-    script.src    = 'https://checkout.wompi.co/widget.js';
-    script.setAttribute('data-render','button');
-    script.setAttribute('data-public-key', PUBLIC_KEY);
-    script.setAttribute('data-currency', currency);
-    script.setAttribute('data-amount-in-cents', amountInCents);
-    script.setAttribute('data-reference', reference);
-    script.setAttribute('data-redirect-url', redirectUrl);
-    script.setAttribute('data-customer-data:email', email||'');
-    script.setAttribute('data-customer-data:full-name', nombre+' '+apellido);
-    script.setAttribute('data-customer-data:phone-number', wa||'');
-    script.setAttribute('data-customer-data:legal-id', doc||'');
-    script.setAttribute('data-customer-data:legal-id-type','CC');
-    document.body.appendChild(script);
-    script.onload = () => { script.click(); };
-  }
-
-  // Verificar si venimos de Wompi (redirect de vuelta)
-  const urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.get('status') === 'approved') {
-    localStorage.removeItem('ee_cart');
-    mostrarExito();
-  }
-
-  function mostrarExito() {
-    localStorage.removeItem('ee_cart');
-    document.getElementById('checkoutLayout').style.display = 'none';
-    document.getElementById('successScreen').classList.add('show');
-    document.getElementById('successScreen').style.display = 'block';
-  }
-
-  window.pedirPorWhatsApp = function(pedido) {
-    const p       = pedido || { productos: cart, subtotal, costoEnvio: shippingCost };
-    const items   = (p.productos || cart).map(i =>
+  function notificarWA(p) {
+    const items = (p.productos || carrito).map(i =>
       `• ${i.nombre} (T:${i.talla}) x${i.qty} = $${(i.precio*i.qty).toLocaleString('es-CO')}`
     ).join('\n');
-    const nombre  = document.getElementById('cNombre').value || '';
-    const dir     = document.getElementById('cDireccion')?.value || 'Recoge en tienda';
-    const metodo  = payMethod === 'wompi' ? 'Tarjeta/PSE' : payMethod === 'nequi_qr' ? 'Nequi/Daviplata' : payMethod === 'contra' ? 'Contra entrega' : 'Pago en tienda';
+    const metodos = {
+      nequi: 'Nequi / Daviplata',
+      contra: 'Contra entrega (efectivo)',
+      tienda_pago: 'Pago en tienda'
+    };
     const msg = encodeURIComponent(
-      `Hola, quiero confirmar mi pedido 🌸\n\n` +
-      `👤 ${nombre}\n` +
-      `📍 ${dir}\n\n` +
+      `🌸 *NUEVO PEDIDO — Eres Especial*\n\n` +
+      `👤 ${p.cliente}\n📱 ${p.whatsapp}\n📍 ${p.direccion}\n\n` +
       `${items}\n\n` +
-      `*Subtotal:* $${subtotal.toLocaleString('es-CO')}\n` +
-      `*Envío:* ${shippingCost > 0 ? '$'+shippingCost.toLocaleString('es-CO') : 'GRATIS'}\n` +
-      `*TOTAL: $${(subtotal+shippingCost).toLocaleString('es-CO')}*\n` +
-      `*Método de pago:* ${metodo}`
+      `Subtotal: $${p.subtotal.toLocaleString('es-CO')}\n` +
+      `Envío: ${p.costoEnvio > 0 ? '$'+p.costoEnvio.toLocaleString('es-CO') : 'GRATIS'}\n` +
+      `*TOTAL: $${p.total.toLocaleString('es-CO')}*\n` +
+      `Pago: ${metodos[p.metodoPago] || p.metodoPago}\n` +
+      (p.notas ? `Notas: ${p.notas}` : '')
     );
-    window.open(`https://wa.me/${waNum}?text=${msg}`, '_blank');
-  };
-
-  function showToast(m) {
-    const t=document.getElementById('toast');
-    t.textContent=m; t.classList.add('show');
-    setTimeout(()=>t.classList.remove('show'),2500);
+    window.open(`https://wa.me/${WA_NUM}?text=${msg}`, '_blank');
   }
 
-  renderResumen();
+  window.pedidoWA = function() {
+    const nombre  = document.getElementById('cNombre').value.trim() || 'Cliente';
+    const items   = carrito.map(i =>
+      `• ${i.nombre} (T:${i.talla}) x${i.qty} = $${(i.precio*i.qty).toLocaleString('es-CO')}`
+    ).join('\n');
+    const total   = subtotal + envCosto;
+    const msg = encodeURIComponent(
+      `Hola, quiero hacer un pedido 🌸\n\n${items}\n\n` +
+      `*Total: $${total.toLocaleString('es-CO')}*\n` +
+      `¿Cómo procedo con el pago?`
+    );
+    window.open(`https://wa.me/${WA_NUM}?text=${msg}`, '_blank');
+  };
+
+  function mostrarExito() {
+    document.getElementById('checkoutMain').style.display = 'none';
+    document.getElementById('successWrap').classList.add('show');
+  }
+
+  function toast(m) {
+    const t = document.getElementById('toast');
+    t.textContent = m; t.classList.add('on');
+    setTimeout(() => t.classList.remove('on'), 2500);
+  }
 </script>
 </body>
 </html>

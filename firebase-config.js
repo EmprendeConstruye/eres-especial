@@ -3,44 +3,40 @@
 // ║  SOLO DEBES EDITAR ESTE ARCHIVO.                         ║
 // ║  Todos los HTML leen la config desde aquí.               ║
 // ╚══════════════════════════════════════════════════════════╝
+// ═══════════════════════════════════════════════════════════
+//  INSTRUCCIONES — LEE ESTO PRIMERO
+//
+//  Este archivo NO se carga como <script src="">
+//  En cambio, COPIA el bloque CONFIG_EE de abajo
+//  y PÉGALO dentro del <script> de cada HTML.
+//
+//  ¿Por qué? Porque Firebase Hosting a veces tiene
+//  problemas de timing cuando se carga config externamente.
+//  Con config embebida directamente en cada HTML, funciona 100%.
+// ═══════════════════════════════════════════════════════════
 
-// ── 1. TU CONFIGURACIÓN DE FIREBASE ────────────────────────
-//    Firebase Console → ⚙️ Configuración → Tu app web
-window.FIREBASE_CONFIG = {
- apiKey: "AIzaSyC8mt3x7D3pcntULFReiUlENESAKx-L-kU",
+// ── BLOQUE A COPIAR EN CADA HTML ────────────────────────────
+const CONFIG_EE = {
+
+  // 1. Firebase (Firebase Console → ⚙️ → Tu app web)
+  firebase: {
+    apiKey: "AIzaSyC8mt3x7D3pcntULFReiUlENESAKx-L-kU",
   authDomain: "eres-especial.firebaseapp.com",
   projectId: "eres-especial",
+  //storageBucket: "eres-especial.firebasestorage.app",
   messagingSenderId: "1060245560689",
   appId: "1:1060245560689:web:57c9fcbff89469ccd2ead0"
-};
+  },
 
-// ── 2. TUS DATOS DE CLOUDINARY (para subir imágenes gratis) ─
-//    cloudinary.com → Dashboard → Cloud name
-window.CLOUDINARY_CONFIG = {
-  cloudName:    "ds0lszzxt",   // ej: "mi-tienda-abc"
-  uploadPreset: "eres_especial_preset"  // el que creaste en Cloudinary
-};
+  // 2. Cloudinary (cloudinary.com → Dashboard)
+  cloudinary: {
+    cloudName:    "ds0lszzxt",  // ej: "mi-tienda-abc"
+    uploadPreset: "eres_especial_preset"
+  },
 
-// ── 3. TU NÚMERO DE WHATSAPP ────────────────────────────────
-window.WA_NUMBER = "573207410290";  // formato internacional sin + ni espacios 573207410290
-
-// ── 4. TIENDA FÍSICA ─────────────────────────────────────────
-//    Edita con la dirección real de tu tienda
-window.STORE_CONFIG = {
-  address:  "Calle 111 A N68A-90, cerca de la estacio del metrocable Santo Domingo", // Escribe aquí tu dirección completa, Medellín
-  // Para obtener tu link de Maps:
-  //   1. Busca tu negocio en Google Maps
-  //   2. Clic en "Compartir" → "Copiar enlace"
-  //   3. Pega ese enlace aquí:
-  mapsUrl:  "https://maps.app.goo.gl/aMDUnunF5BHFEhw96",
-  horario:  "Lun–Sáb: 10am – 7pm · Dom: 11am – 5pm",
-  telefono: "+57 320 7410290"
+  // 3. Tienda
+  wa:      "573207410290",
+  address: "Cr 32 N102B-31, Cerca de la estación del metro cable Santo Domingo",
+  mapsUrl: "https://maps.app.goo.gl/KMUKJcXAjfjfKJsH9?g_st=ic",
+  horario: "Lun–Mier-Jue-Sáb: 8:30am-8:30pm. Mart-Vier: 8:30am-6.30pm"
 };
- 
-// ── 5. WOMPI (pasarela de pago) ───────────────────────────────
-//    wompi.com → Mi cuenta → Llaves de API
-//    Usa pub_test_ para pruebas, pub_prod_ para producción
-// Nombre de Uusrio de Wompi "eresespecial20"
-// correo electronico "vallejo.timo15@gmail.com"
-// habilitar cuadno joca tenga la cuenta 
-window.WOMPI_PUBLIC_KEY = "pub_test_REEMPLAZA_CON_TU_PUBLIC_KEY";
