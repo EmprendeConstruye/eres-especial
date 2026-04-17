@@ -31,7 +31,6 @@
     .input-wrap{position:relative}
     .input-wrap input{padding-right:44px}
     .show-pass{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;color:var(--gray);font-size:.9rem}
-    .show-pass:hover{color:var(--rose)}
     .forgot{text-align:right;margin-top:.4rem}
     .forgot a{font-size:.75rem;color:var(--rose);text-decoration:none}
     .btn-submit{width:100%;padding:14px;background:var(--wine);color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;margin-top:1.4rem;transition:background .25s}
@@ -46,16 +45,19 @@
     .form-section{display:none}
     .form-section.active{display:block}
     .strength-bar{height:3px;background:var(--blush);margin-top:.5rem;border-radius:2px;overflow:hidden}
-    .strength-fill{height:100%;width:0%;transition:width .3s,background .3s;background:var(--rose)}
-    .error-msg{background:rgba(176,48,48,.08);border-left:3px solid #b03030;padding:10px 14px;font-size:.8rem;color:#b03030;margin-bottom:1rem;display:none}
-    .error-msg.show{display:block}
-    .success-msg{background:rgba(61,122,74,.08);border-left:3px solid #3d7a4a;padding:10px 14px;font-size:.8rem;color:#3d7a4a;margin-bottom:1rem;display:none}
-    .success-msg.show{display:block}
+    .strength-fill{height:100%;width:0%;transition:width .3s,background .3s}
+    .msg{padding:10px 14px;font-size:.8rem;margin-bottom:1rem;display:none;border-left:3px solid}
+    .msg.show{display:block}
+    .msg.error{background:rgba(176,48,48,.08);border-color:#b03030;color:#b03030}
+    .msg.success{background:rgba(61,122,74,.08);border-color:#3d7a4a;color:#3d7a4a}
     footer{padding:20px 5%;text-align:center;font-size:.75rem;color:var(--gray);background:rgba(250,247,244,.6)}
     footer a{color:var(--rose);text-decoration:none}
   </style>
 </head>
 <body>
+
+<script src="firebase-config.js"></script>
+
 <nav>
   <a href="index.html" class="nav-logo">Eres <span>Especial</span></a>
   <a href="index.html" style="font-size:.78rem;color:var(--gray);text-decoration:none">← Volver a la tienda</a>
@@ -72,224 +74,159 @@
         <div class="auth-logo-text">Eres <span>Especial</span></div>
         <div class="auth-sub" id="authSub">Bienvenida de regreso 🌸</div>
       </div>
-
-      <!-- ── LOGIN ── -->
+      <!-- LOGIN -->
       <div class="form-section active" id="loginForm">
-        <div class="error-msg"   id="loginError"></div>
-        <div class="success-msg" id="loginSuccess"></div>
-        <div class="form-group">
-          <label>Correo electrónico</label>
-          <input type="email" id="loginEmail" placeholder="tucorreo@email.com"/>
-        </div>
-        <div class="form-group">
-          <label>Contraseña</label>
+        <div class="msg error" id="loginError"></div>
+        <div class="msg success" id="loginSuccess"></div>
+        <div class="form-group"><label>Correo electrónico</label><input type="email" id="loginEmail" placeholder="tucorreo@email.com"/></div>
+        <div class="form-group"><label>Contraseña</label>
           <div class="input-wrap">
             <input type="password" id="loginPass" placeholder="Tu contraseña"/>
             <button class="show-pass" type="button" onclick="togglePass('loginPass',this)">👁</button>
           </div>
-          <div class="forgot"><a href="#" onclick="resetPassword()">¿Olvidaste tu contraseña?</a></div>
+          <div class="forgot"><a href="#" onclick="resetPassword();return false">¿Olvidaste tu contraseña?</a></div>
         </div>
         <button class="btn-submit" id="loginBtn" onclick="handleLogin()">Iniciar sesión</button>
         <div class="divider-or">o continúa con</div>
         <button class="btn-social" onclick="loginGoogle()">🔍 Continuar con Google</button>
       </div>
-
-      <!-- ── REGISTRO ── -->
+      <!-- REGISTRO -->
       <div class="form-section" id="registroForm">
-        <div class="error-msg"   id="regError"></div>
-        <div class="success-msg" id="regSuccess"></div>
+        <div class="msg error" id="regError"></div>
+        <div class="msg success" id="regSuccess"></div>
         <div class="form-row">
           <div class="form-group"><label>Nombre</label><input type="text" id="regNombre" placeholder="Tu nombre"/></div>
           <div class="form-group"><label>Apellido</label><input type="text" id="regApellido" placeholder="Tu apellido"/></div>
         </div>
-        <div class="form-group">
-          <label>Correo electrónico</label>
-          <input type="email" id="regEmail" placeholder="tucorreo@email.com"/>
-        </div>
-        <div class="form-group">
-          <label>WhatsApp (opcional)</label>
-          <input type="tel" id="regWa" placeholder="+57 300 000 0000"/>
-        </div>
-        <div class="form-group">
-          <label>Contraseña</label>
+        <div class="form-group"><label>Correo electrónico</label><input type="email" id="regEmail" placeholder="tucorreo@email.com"/></div>
+        <div class="form-group"><label>WhatsApp (opcional)</label><input type="tel" id="regWa" placeholder="+57 300 000 0000"/></div>
+        <div class="form-group"><label>Contraseña</label>
           <div class="input-wrap">
             <input type="password" id="regPass" placeholder="Mínimo 8 caracteres" oninput="checkStrength(this.value)"/>
             <button class="show-pass" type="button" onclick="togglePass('regPass',this)">👁</button>
           </div>
           <div class="strength-bar"><div class="strength-fill" id="strengthFill"></div></div>
         </div>
-        <div class="form-group">
-          <label>Confirmar contraseña</label>
+        <div class="form-group"><label>Confirmar contraseña</label>
           <div class="input-wrap">
             <input type="password" id="regPass2" placeholder="Repite tu contraseña"/>
             <button class="show-pass" type="button" onclick="togglePass('regPass2',this)">👁</button>
           </div>
         </div>
         <button class="btn-submit" id="regBtn" onclick="handleRegister()">Crear mi cuenta</button>
-        <p class="terms">Al registrarte aceptas nuestros <a href="#">Términos</a> y <a href="#">Política de privacidad</a>. Tus datos están protegidos 🔒</p>
+        <p class="terms">Al registrarte aceptas nuestros <a href="#">Términos</a> y <a href="#">Política de privacidad</a>. 🔒</p>
       </div>
     </div>
   </div>
 </div>
 
-<footer>¿Necesitas ayuda? <a href="https://wa.me/1234567890">Escríbenos por WhatsApp</a> · © 2025 Eres Especial</footer>
+<footer id="footerWa">¿Necesitas ayuda? <a id="waFooter" href="#">Escríbenos por WhatsApp</a> · © 2025 Eres Especial</footer>
 
 <script type="module">
   import { initializeApp }     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getFirestore, doc, setDoc }
                                from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-  import {
-    getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
+  import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword,
     sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup,
-    updateProfile, onAuthStateChanged
-  } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+    updateProfile, onAuthStateChanged }
+                               from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-  // ══════════════════════════════════════════════════════
-  //  ❶  PEGA AQUÍ TU CONFIGURACIÓN DE FIREBASE
-  // ══════════════════════════════════════════════════════
-  const firebaseConfig = {
-    apiKey: "AIzaSyC8mt3x7D3pcntULFReiUlENESAKx-L-kU",
-  authDomain: "eres-especial.firebaseapp.com",
-  projectId: "eres-especial",
-  storageBucket: "eres-especial.firebasestorage.app",
-  messagingSenderId: "1060245560689",
-  appId: "1:1060245560689:web:57c9fcbff89469ccd2ead0"
-  };
-  // ══════════════════════════════════════════════════════
+  const cfg   = window.FIREBASE_CONFIG;
+  const cfgOk = cfg && cfg.apiKey && !cfg.apiKey.includes('PEGA');
+  const waNum = window.WA_NUMBER || "573207410290";
 
-  const app      = initializeApp(firebaseConfig);
-  const auth     = getAuth(app);
-  const db       = getFirestore(app);
-  const provider = new GoogleAuthProvider();
+  document.getElementById('waFooter').href =
+    `https://wa.me/${waNum}?text=Hola%2C%20necesito%20ayuda%20con%20mi%20cuenta%20%F0%9F%8C%B8`;
 
-  // Si ya está logueada → redirigir a inicio
-  onAuthStateChanged(auth, user => {
-    if (user) window.location.href = 'index.html';
-  });
-
-  // ── Helpers UI ─────────────────────────────────────────
-  function showError(id, msg) {
-    const el = document.getElementById(id);
-    el.textContent = msg; el.classList.add('show');
-  }
-  function clearMsgs(prefix) {
-    ['Error','Success'].forEach(s => {
-      const el = document.getElementById(prefix + s);
-      if (el) el.classList.remove('show');
-    });
-  }
-  function setLoading(btnId, loading) {
-    const btn = document.getElementById(btnId);
-    btn.disabled  = loading;
-    btn.textContent = loading ? 'Cargando…' : (btnId === 'loginBtn' ? 'Iniciar sesión' : 'Crear mi cuenta');
+  let auth, db;
+  if (cfgOk) {
+    const app = initializeApp(cfg);
+    auth = getAuth(app);
+    db   = getFirestore(app);
+    onAuthStateChanged(auth, u => { if (u) location.href='index.html'; });
   }
 
-  // ── LOGIN ───────────────────────────────────────────────
-  window.handleLogin = async function() {
-    clearMsgs('login');
-    const email = document.getElementById('loginEmail').value.trim();
-    const pass  = document.getElementById('loginPass').value;
-    if (!email || !pass) { showError('loginError','Completa todos los campos'); return; }
-    setLoading('loginBtn', true);
+  function showMsg(id,msg,type='error'){
+    const el=document.getElementById(id);
+    el.textContent=msg; el.className='msg '+type+' show';
+  }
+  function hideMsg(prefix){['Error','Success'].forEach(s=>{const el=document.getElementById(prefix+s);if(el)el.classList.remove('show');})}
+  function setLoad(btnId,on,text){const b=document.getElementById(btnId);b.disabled=on;b.textContent=on?'Cargando…':text;}
+
+  window.handleLogin = async function(){
+    if(!cfgOk){alert('Firebase no configurado todavía. Revisa firebase-config.js');return;}
+    hideMsg('login');
+    const email=document.getElementById('loginEmail').value.trim();
+    const pass=document.getElementById('loginPass').value;
+    if(!email||!pass){showMsg('loginError','Completa todos los campos');return;}
+    setLoad('loginBtn',true,'Iniciar sesión');
     try {
-      await signInWithEmailAndPassword(auth, email, pass);
-      // onAuthStateChanged redirigirá automáticamente
-    } catch (err) {
-      const msgs = {
-        'auth/user-not-found': 'No existe una cuenta con ese correo.',
-        'auth/wrong-password': 'Contraseña incorrecta.',
-        'auth/invalid-email':  'El correo no es válido.',
-        'auth/too-many-requests': 'Demasiados intentos. Intenta más tarde.',
-      };
-      showError('loginError', msgs[err.code] || 'Error al iniciar sesión. Intenta de nuevo.');
-      setLoading('loginBtn', false);
+      await signInWithEmailAndPassword(auth,email,pass);
+    } catch(e){
+      const m={'auth/user-not-found':'No existe cuenta con ese correo.','auth/wrong-password':'Contraseña incorrecta.','auth/invalid-credential':'Correo o contraseña incorrectos.','auth/too-many-requests':'Demasiados intentos. Espera un momento.'};
+      showMsg('loginError',m[e.code]||'Error al iniciar sesión.');
+      setLoad('loginBtn',false,'Iniciar sesión');
     }
   };
 
-  // ── REGISTRO ────────────────────────────────────────────
-  window.handleRegister = async function() {
-    clearMsgs('reg');
-    const nombre   = document.getElementById('regNombre').value.trim();
-    const apellido = document.getElementById('regApellido').value.trim();
-    const email    = document.getElementById('regEmail').value.trim();
-    const wa       = document.getElementById('regWa').value.trim();
-    const pass     = document.getElementById('regPass').value;
-    const pass2    = document.getElementById('regPass2').value;
-    if (!nombre || !email || !pass) { showError('regError','Completa los campos obligatorios'); return; }
-    if (pass.length < 8)   { showError('regError','La contraseña debe tener al menos 8 caracteres'); return; }
-    if (pass !== pass2)    { showError('regError','Las contraseñas no coinciden'); return; }
-    setLoading('regBtn', true);
+  window.handleRegister = async function(){
+    if(!cfgOk){alert('Firebase no configurado todavía. Revisa firebase-config.js');return;}
+    hideMsg('reg');
+    const nombre=document.getElementById('regNombre').value.trim();
+    const apellido=document.getElementById('regApellido').value.trim();
+    const email=document.getElementById('regEmail').value.trim();
+    const wa=document.getElementById('regWa').value.trim();
+    const pass=document.getElementById('regPass').value;
+    const pass2=document.getElementById('regPass2').value;
+    if(!nombre||!email||!pass){showMsg('regError','Completa los campos obligatorios');return;}
+    if(pass.length<8){showMsg('regError','La contraseña debe tener al menos 8 caracteres');return;}
+    if(pass!==pass2){showMsg('regError','Las contraseñas no coinciden');return;}
+    setLoad('regBtn',true,'Crear mi cuenta');
     try {
-      const cred = await createUserWithEmailAndPassword(auth, email, pass);
-      // Guardar nombre en Firebase Auth
-      await updateProfile(cred.user, { displayName: nombre + ' ' + apellido });
-      // Guardar perfil en Firestore
-      await setDoc(doc(db, 'clientes', cred.user.uid), {
-        nombre, apellido, email, whatsapp: wa,
-        creadoEn: new Date().toISOString(), rol: 'cliente'
-      });
-      // onAuthStateChanged redirigirá
-    } catch (err) {
-      const msgs = {
-        'auth/email-already-in-use': 'Ya existe una cuenta con ese correo.',
-        'auth/invalid-email':        'El correo no es válido.',
-        'auth/weak-password':        'La contraseña es muy débil.',
-      };
-      showError('regError', msgs[err.code] || 'Error al crear la cuenta. Intenta de nuevo.');
-      setLoading('regBtn', false);
+      const cred=await createUserWithEmailAndPassword(auth,email,pass);
+      await updateProfile(cred.user,{displayName:nombre+' '+apellido});
+      await setDoc(doc(db,'clientes',cred.user.uid),{nombre,apellido,email,whatsapp:wa,creadoEn:new Date().toISOString(),rol:'cliente'});
+    } catch(e){
+      const m={'auth/email-already-in-use':'Ya existe una cuenta con ese correo.','auth/weak-password':'La contraseña es muy débil.'};
+      showMsg('regError',m[e.code]||'Error al crear la cuenta.');
+      setLoad('regBtn',false,'Crear mi cuenta');
     }
   };
 
-  // ── GOOGLE ──────────────────────────────────────────────
-  window.loginGoogle = async function() {
-    try {
-      await signInWithPopup(auth, provider);
-      // onAuthStateChanged redirigirá
-    } catch (err) {
-      showError('loginError', 'No se pudo iniciar sesión con Google.');
-    }
+  window.loginGoogle = async function(){
+    if(!cfgOk){alert('Firebase no configurado todavía.');return;}
+    try { await signInWithPopup(auth,new GoogleAuthProvider()); }
+    catch(e){ showMsg('loginError','No se pudo iniciar sesión con Google: '+e.message); }
   };
 
-  // ── RECUPERAR CONTRASEÑA ────────────────────────────────
-  window.resetPassword = async function() {
-    const email = document.getElementById('loginEmail').value.trim();
-    if (!email) { showError('loginError','Escribe tu correo primero'); return; }
-    try {
-      await sendPasswordResetEmail(auth, email);
-      const el = document.getElementById('loginSuccess');
-      el.textContent = '✓ Te enviamos un correo para restablecer tu contraseña.';
-      el.classList.add('show');
-    } catch (_) {
-      showError('loginError','No encontramos ese correo.');
-    }
+  window.resetPassword = async function(){
+    if(!cfgOk){alert('Firebase no configurado todavía.');return;}
+    const email=document.getElementById('loginEmail').value.trim();
+    if(!email){showMsg('loginError','Escribe tu correo primero');return;}
+    try{
+      await sendPasswordResetEmail(auth,email);
+      showMsg('loginSuccess','✓ Te enviamos un correo para restablecer tu contraseña.','success');
+    }catch(e){showMsg('loginError','No encontramos ese correo.');}
   };
 
-  // ── HELPERS UI globales ─────────────────────────────────
-  window.switchTab = function(section, btn) {
-    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
-    document.querySelectorAll('.form-section').forEach(s => s.classList.remove('active'));
+  window.switchTab = function(s,btn){
+    document.querySelectorAll('.auth-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.form-section').forEach(f=>f.classList.remove('active'));
     btn.classList.add('active');
-    document.getElementById(section+'Form').classList.add('active');
-    document.getElementById('authSub').textContent =
-      section === 'login' ? 'Bienvenida de regreso 🌸' : 'Únete a nuestra comunidad 🌺';
+    document.getElementById(s+'Form').classList.add('active');
+    document.getElementById('authSub').textContent=s==='login'?'Bienvenida de regreso 🌸':'Únete a nuestra comunidad 🌺';
   };
-
-  window.togglePass = function(id, btn) {
-    const inp = document.getElementById(id);
-    inp.type  = inp.type === 'password' ? 'text' : 'password';
-    btn.textContent = inp.type === 'password' ? '👁' : '🙈';
+  window.togglePass = function(id,btn){
+    const i=document.getElementById(id);
+    i.type=i.type==='password'?'text':'password';
+    btn.textContent=i.type==='password'?'👁':'🙈';
   };
-
-  window.checkStrength = function(val) {
-    let score = 0;
-    if (val.length >= 8) score++;
-    if (/[A-Z]/.test(val)) score++;
-    if (/[0-9]/.test(val)) score++;
-    if (/[^A-Za-z0-9]/.test(val)) score++;
-    const fill = document.getElementById('strengthFill');
-    const colors = ['#e8c4b8','#c4856a','#a0602a','#4a7a3d'];
-    fill.style.width  = (score * 25) + '%';
-    fill.style.background = colors[score-1] || 'var(--blush)';
+  window.checkStrength = function(v){
+    let s=0;
+    if(v.length>=8)s++;if(/[A-Z]/.test(v))s++;if(/[0-9]/.test(v))s++;if(/[^A-Za-z0-9]/.test(v))s++;
+    const f=document.getElementById('strengthFill');
+    f.style.width=(s*25)+'%';
+    f.style.background=['#e8c4b8','#c4856a','#a0602a','#4a7a3d'][s-1]||'var(--blush)';
   };
 </script>
 </body>
