@@ -22,4 +22,25 @@ window.CLOUDINARY_CONFIG = {
 };
 
 // ── 3. TU NÚMERO DE WHATSAPP ────────────────────────────────
-window.WA_NUMBER = "573207410290";  // formato internacional sin + ni espacios
+window.WA_NUMBER = "573207410290";  // formato internacional sin + ni espacios 573207410290
+
+// ── 4. TIENDA FÍSICA ─────────────────────────────────────────
+//    Edita con la dirección real de tu tienda
+window.STORE_CONFIG = {
+  address:  "Calle 111 A N68A-90, cerca de la estacio del metrocable Santo Domingo", // Escribe aquí tu dirección completa, Medellín
+  // Para obtener tu link de Maps:
+  //   1. Busca tu negocio en Google Maps
+  //   2. Clic en "Compartir" → "Copiar enlace"
+  //   3. Pega ese enlace aquí:
+  mapsUrl:  "https://maps.app.goo.gl/aMDUnunF5BHFEhw96",
+  horario:  "Lun–Sáb: 10am – 7pm · Dom: 11am – 5pm",
+  telefono: "+57 320 7410290"
+};
+ 
+// ── 5. WOMPI (pasarela de pago) ───────────────────────────────
+//    wompi.com → Mi cuenta → Llaves de API
+//    Usa pub_test_ para pruebas, pub_prod_ para producción
+// Nombre de Uusrio de Wompi "eresespecial20"
+// correo electronico "vallejo.timo15@gmail.com"
+// habilitar cuadno joca tenga la cuenta 
+window.WOMPI_PUBLIC_KEY = "pub_test_REEMPLAZA_CON_TU_PUBLIC_KEY";

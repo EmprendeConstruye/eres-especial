@@ -9,16 +9,23 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{--cream:#f5f0eb;--blush:#e8c4b8;--rose:#c4856a;--wine:#7a3d3d;--dark:#2a1a1a;--light:#faf7f4;--text:#4a3030;--gray:#9e8888}
     body{font-family:'Jost',sans-serif;background:var(--light);color:var(--text)}
+
+    /* NAV */
     nav{position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5%;background:rgba(250,247,244,.95);backdrop-filter:blur(12px);border-bottom:1px solid rgba(196,133,106,.2);box-shadow:0 2px 20px rgba(122,61,61,.06)}
     .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:600;color:var(--wine);text-decoration:none;letter-spacing:.04em}
     .nav-logo span{font-style:italic;font-weight:300}
-    .nav-icons{display:flex;gap:1rem}
-    .nav-icons button{background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--text);transition:color .2s}
+    .nav-icons{display:flex;gap:1rem;align-items:center}
+    .nav-icons button{background:none;border:none;cursor:pointer;font-size:1.1rem;color:var(--text);transition:color .2s;position:relative}
     .nav-icons button:hover{color:var(--rose)}
+    .cart-count-badge{position:absolute;top:-6px;right:-8px;background:var(--rose);color:#fff;font-size:.6rem;border-radius:50%;width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-family:'Jost',sans-serif;pointer-events:none}
+
+    /* PAGE HEADER */
     .page-header{background:linear-gradient(135deg,var(--cream) 60%,var(--blush) 100%);padding:50px 5% 40px;text-align:center}
     .breadcrumb{font-size:.72rem;letter-spacing:.12em;color:var(--gray);margin-bottom:1rem}
     .breadcrumb a{color:var(--rose);text-decoration:none}
     .page-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;color:var(--dark)}
+
+    /* LAYOUT */
     .catalog-layout{display:grid;grid-template-columns:260px 1fr;gap:2rem;padding:40px 5%;align-items:start}
     .sidebar{position:sticky;top:80px}
     .filter-section{margin-bottom:2rem}
@@ -29,18 +36,22 @@
     .price-range{display:flex;flex-direction:column;gap:.5rem}
     .price-range input[type=range]{accent-color:var(--rose);width:100%}
     .price-labels{display:flex;justify-content:space-between;font-size:.78rem;color:var(--gray)}
-    .size-grid{display:flex;flex-wrap:wrap;gap:.5rem}
+    .size-grid-f{display:flex;flex-wrap:wrap;gap:.5rem}
     .size-btn{padding:6px 14px;border:1.5px solid var(--blush);background:none;cursor:pointer;font-size:.78rem;color:var(--text);transition:all .2s}
     .size-btn:hover,.size-btn.active{border-color:var(--wine);background:var(--wine);color:#fff}
     .btn-clear{width:100%;padding:10px;background:none;border:1.5px solid var(--blush);color:var(--gray);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s;margin-top:.5rem}
     .btn-clear:hover{border-color:var(--rose);color:var(--rose)}
     .filter-toggle{display:none;width:100%;padding:12px;background:var(--wine);color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+
+    /* TOOLBAR */
     .catalog-toolbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:.8rem}
     .result-count{font-size:.85rem;color:var(--gray)}
     .sort-select{padding:8px 16px;border:1.5px solid var(--blush);background:var(--light);color:var(--text);font-family:'Jost',sans-serif;font-size:.82rem;cursor:pointer}
     .view-toggle{display:flex;gap:.3rem}
     .view-btn{background:none;border:1.5px solid var(--blush);width:34px;height:34px;cursor:pointer;font-size:.9rem;transition:all .2s;display:flex;align-items:center;justify-content:center}
     .view-btn.active{border-color:var(--wine);background:var(--wine);color:#fff}
+
+    /* PRODUCT GRID */
     .prod-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:1.5rem}
     .prod-grid.list-view{grid-template-columns:1fr}
     .prod-grid.list-view .prod-card{display:flex}
@@ -61,34 +72,106 @@
     .prod-price s{font-weight:300;color:var(--gray);margin-left:.4rem;font-size:.8rem}
     .prod-add{width:100%;margin-top:10px;padding:9px;background:var(--dark);color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;transition:background .2s}
     .prod-add:hover{background:var(--wine)}
+    .prod-add.added{background:var(--success,#3d7a4a)}
+
+    /* SKELETON */
     .skeleton{background:linear-gradient(90deg,var(--blush) 25%,var(--cream) 50%,var(--blush) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
     @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
     .skel-card{background:#fff}
     .skel-img{aspect-ratio:3/4}
     .skel-line{height:14px;margin:12px 18px 6px;border-radius:2px}
     .skel-line.short{width:60%}
+
+    /* EMPTY / ERROR */
     .empty-state{text-align:center;padding:60px 20px;color:var(--gray);grid-column:1/-1}
     .empty-state .e-icon{font-size:3rem;margin-bottom:1rem}
     .empty-state p{font-family:'Cormorant Garamond',serif;font-size:1.2rem}
-    /* info banner when firebase not configured */
-    .config-banner{background:linear-gradient(135deg,#fff8e1,#fff3cd);border-left:4px solid #f0a500;padding:14px 20px;margin-bottom:1.4rem;font-size:.82rem;color:#7a5c00;border-radius:0 4px 4px 0}
-    .config-banner strong{display:block;margin-bottom:.3rem}
-    .wa-btn{position:fixed;bottom:28px;right:28px;z-index:99;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,.4)}
+
+    /* ── CARRITO LATERAL (drawer) ── */
+    .cart-drawer{position:fixed;top:0;right:-420px;width:420px;max-width:100vw;height:100vh;background:#fff;z-index:500;box-shadow:-4px 0 30px rgba(42,26,26,.12);transition:right .35s cubic-bezier(.4,0,.2,1);display:flex;flex-direction:column}
+    .cart-drawer.open{right:0}
+    .cart-overlay{position:fixed;inset:0;background:rgba(42,26,26,.45);z-index:499;opacity:0;pointer-events:none;transition:opacity .3s}
+    .cart-overlay.open{opacity:1;pointer-events:all}
+    .cart-header{display:flex;justify-content:space-between;align-items:center;padding:20px 24px;border-bottom:1px solid var(--blush)}
+    .cart-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:300}
+    .cart-close{background:none;border:none;cursor:pointer;font-size:1.3rem;color:var(--gray)}
+    .cart-items{flex:1;overflow-y:auto;padding:16px 24px}
+    .cart-empty{text-align:center;padding:60px 20px;color:var(--gray)}
+    .cart-empty .ce-icon{font-size:3rem;margin-bottom:1rem}
+    .cart-item{display:flex;gap:12px;padding:14px 0;border-bottom:1px solid rgba(232,196,184,.4);align-items:center}
+    .ci-img{width:64px;height:80px;object-fit:cover;flex-shrink:0;background:var(--cream);display:flex;align-items:center;justify-content:center;font-size:1.8rem}
+    .ci-img img{width:100%;height:100%;object-fit:cover}
+    .ci-info{flex:1}
+    .ci-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--dark);margin-bottom:.2rem}
+    .ci-detail{font-size:.72rem;color:var(--gray);margin-bottom:.5rem}
+    .ci-price{font-size:.9rem;font-weight:500;color:var(--wine)}
+    .ci-qty{display:flex;align-items:center;gap:.4rem;margin-top:.5rem}
+    .ci-qty button{width:26px;height:26px;border:1.5px solid var(--blush);background:none;cursor:pointer;font-size:.9rem;transition:all .2s}
+    .ci-qty button:hover{border-color:var(--wine);background:var(--wine);color:#fff}
+    .ci-qty span{width:28px;text-align:center;font-size:.85rem}
+    .ci-remove{background:none;border:none;cursor:pointer;color:var(--gray);font-size:.9rem;padding:4px;transition:color .2s;margin-left:auto;align-self:flex-start}
+    .ci-remove:hover{color:var(--danger,#b03030)}
+    .cart-footer{padding:20px 24px;border-top:1px solid var(--blush);background:#fff}
+    .cart-subtotal{display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:.6rem}
+    .cart-subtotal strong{font-family:'Cormorant Garamond',serif;font-size:1.1rem}
+    .cart-note{font-size:.72rem;color:var(--gray);margin-bottom:1rem;line-height:1.5}
+    .btn-checkout{width:100%;padding:14px;background:var(--wine);color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.82rem;letter-spacing:.16em;text-transform:uppercase;transition:background .25s;margin-bottom:.6rem}
+    .btn-checkout:hover{background:var(--rose)}
+    .btn-wa-order{width:100%;padding:13px;background:#25D366;color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;transition:opacity .2s}
+    .btn-wa-order:hover{opacity:.88}
+
+    /* ── MODAL TALLA (quick add) ── */
+    .size-modal-overlay{position:fixed;inset:0;background:rgba(42,26,26,.5);z-index:600;display:none;align-items:flex-end;justify-content:center}
+    .size-modal-overlay.open{display:flex}
+    .size-modal{background:#fff;width:100%;max-width:480px;padding:28px;animation:slideUp .3s ease}
+    @keyframes slideUp{from{transform:translateY(40px);opacity:0}}
+    .sm-title{font-family:'Cormorant Garamond',serif;font-size:1.2rem;margin-bottom:.4rem}
+    .sm-sub{font-size:.78rem;color:var(--gray);margin-bottom:1.2rem}
+    .sm-sizes{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.4rem}
+    .sm-size{padding:10px 20px;border:1.5px solid var(--blush);background:none;cursor:pointer;font-size:.85rem;color:var(--text);transition:all .2s}
+    .sm-size:hover{border-color:var(--rose);color:var(--rose)}
+    .sm-size.selected{border-color:var(--wine);background:var(--wine);color:#fff}
+    .sm-size.out{opacity:.3;cursor:not-allowed;text-decoration:line-through}
+    .sm-btn{width:100%;padding:13px;background:var(--dark);color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;transition:background .2s}
+    .sm-btn:hover{background:var(--wine)}
+    .sm-close{float:right;background:none;border:none;cursor:pointer;font-size:1.2rem;color:var(--gray)}
+
+    /* TOAST */
+    .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(10px);background:var(--dark);color:#fff;padding:11px 22px;font-size:.8rem;opacity:0;transition:all .3s;pointer-events:none;z-index:700;white-space:nowrap}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+    /* TIENDA FÍSICA banner */
+    .tienda-fisica{background:var(--dark);color:#fff;padding:40px 5%;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+    .tf-info h3{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300;margin-bottom:.6rem}
+    .tf-info p{font-size:.85rem;opacity:.75;line-height:1.7}
+    .tf-data{display:flex;flex-direction:column;gap:.5rem}
+    .tf-row{display:flex;align-items:center;gap:.7rem;font-size:.85rem;opacity:.85}
+    .tf-icon{font-size:1.1rem;opacity:.7}
+    .btn-maps{display:inline-block;margin-top:1rem;padding:10px 24px;background:var(--rose);color:#fff;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:opacity .2s}
+    .btn-maps:hover{opacity:.85}
+
+    /* WA */
+    .wa-btn{position:fixed;bottom:28px;right:28px;z-index:99;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,.4);animation:waPulse 2.5s infinite}
+    @keyframes waPulse{0%,100%{box-shadow:0 6px 20px rgba(37,211,102,.4)}50%{box-shadow:0 6px 28px rgba(37,211,102,.65)}}
+
     @media(max-width:900px){.catalog-layout{grid-template-columns:1fr}.sidebar{position:static}.filter-toggle{display:block}.sidebar-inner{display:none}.sidebar-inner.open{display:block}}
+    @media(max-width:600px){.cart-drawer{width:100vw}}
   </style>
 </head>
 <body>
 
-<!-- Config compartida -->
+<!-- ⚠️ ESTE SCRIPT DEBE ESTAR ANTES DE CUALQUIER OTRO ⚠️
+     Lee tu configuración de Firebase y Cloudinary desde un solo lugar -->
 <script src="firebase-config.js"></script>
 
 <nav>
   <a href="index.html" class="nav-logo">Eres <span>Especial</span></a>
   <div class="nav-icons">
-    <button>🔍</button>
-    <button>♡</button>
-    <button>🛍</button>
-    <button onclick="location.href='login.html'">👤</button>
+    <button onclick="location.href='login.html'" title="Mi cuenta">👤</button>
+    <button onclick="toggleCart()" title="Carrito" style="position:relative">
+      🛍
+      <span class="cart-count-badge" id="cartBadge" style="display:none">0</span>
+    </button>
   </div>
 </nav>
 
@@ -98,6 +181,7 @@
 </div>
 
 <div class="catalog-layout">
+  <!-- FILTROS -->
   <aside class="sidebar">
     <button class="filter-toggle" onclick="document.getElementById('sidebarInner').classList.toggle('open')">☰ Filtros</button>
     <div class="sidebar-inner" id="sidebarInner">
@@ -123,7 +207,7 @@
       </div>
       <div class="filter-section">
         <div class="filter-title">Tallas</div>
-        <div class="size-grid" id="sizeFilters">
+        <div class="size-grid-f">
           <button class="size-btn" onclick="toggleSize(this,'XS')">XS</button>
           <button class="size-btn" onclick="toggleSize(this,'S')">S</button>
           <button class="size-btn" onclick="toggleSize(this,'M')">M</button>
@@ -137,8 +221,8 @@
     </div>
   </aside>
 
+  <!-- PRODUCTOS -->
   <main>
-    <div id="configBanner"></div>
     <div class="catalog-toolbar">
       <span class="result-count" id="resultCount">Cargando...</span>
       <div style="display:flex;gap:.8rem;align-items:center;flex-wrap:wrap">
@@ -153,7 +237,9 @@
         </select>
       </div>
     </div>
+
     <div class="prod-grid" id="productGrid">
+      <!-- skeleton inicial -->
       <div class="skel-card"><div class="skel-img skeleton"></div><div class="skel-line skeleton"></div><div class="skel-line short skeleton"></div></div>
       <div class="skel-card"><div class="skel-img skeleton"></div><div class="skel-line skeleton"></div><div class="skel-line short skeleton"></div></div>
       <div class="skel-card"><div class="skel-img skeleton"></div><div class="skel-line skeleton"></div><div class="skel-line short skeleton"></div></div>
@@ -164,92 +250,166 @@
   </main>
 </div>
 
-<!-- WA desde config -->
-<a id="waBtn" href="#" class="wa-btn" target="_blank">💬</a>
+<!-- ── SECCIÓN TIENDA FÍSICA ── -->
+<div class="tienda-fisica" id="tiendaFisica">
+  <div class="tf-info">
+    <h3>🌸 Visítanos en nuestra tienda</h3>
+    <p>También puedes venir en persona, probar tus prendas<br/>y recibir asesoría personalizada.</p>
+    <a href="https://maps.google.com/?q=Medellín,+Colombia" target="_blank" class="btn-maps" id="linkMaps">
+      📍 Ver en Google Maps
+    </a>
+  </div>
+  <div class="tf-data">
+    <div class="tf-row"><span class="tf-icon">📍</span><span id="tfDireccion">Cargando dirección...</span></div>
+    <div class="tf-row"><span class="tf-icon">🕐</span><span id="tfHorario">Lun–Sáb: 10am – 7pm</span></div>
+    <div class="tf-row"><span class="tf-icon">📞</span><span id="tfTelefono">+57 320 7410290</span></div>
+    <div class="tf-row"><span class="tf-icon">🚗</span><span>Parqueadero disponible</span></div>
+  </div>
+</div>
 
+<!-- ── CARRITO LATERAL ── -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <span class="cart-title">🛍 Mi carrito</span>
+    <button class="cart-close" onclick="toggleCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty">
+      <div class="ce-icon">🛍</div>
+      <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gray)">Tu carrito está vacío</p>
+      <p style="font-size:.8rem;color:var(--gray);margin-top:.5rem">Agrega productos para comenzar</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none">
+    <div class="cart-subtotal">
+      <span>Subtotal</span>
+      <strong id="cartTotal">$0</strong>
+    </div>
+    <p class="cart-note">🚚 Envío gratis en pedidos mayores a $150.000 en Medellín<br/>📍 También puedes recoger en tienda</p>
+    <button class="btn-checkout" onclick="irCheckout()">Finalizar compra →</button>
+    <button class="btn-wa-order" onclick="pedirPorWhatsApp()">💬 Pedir por WhatsApp</button>
+  </div>
+</div>
+
+<!-- ── MODAL SELECCIÓN DE TALLA ── -->
+<div class="size-modal-overlay" id="sizeModal">
+  <div class="size-modal">
+    <button class="sm-close" onclick="closeSizeModal()">✕</button>
+    <div class="sm-title" id="smTitle">Selecciona tu talla</div>
+    <div class="sm-sub" id="smSub">Elige la talla antes de agregar al carrito</div>
+    <div class="sm-sizes" id="smSizes"></div>
+    <button class="sm-btn" onclick="confirmarTalla()">Agregar al carrito</button>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<a id="waBtn" href="#" class="wa-btn" target="_blank" title="Chatea con nosotras">💬</a>
+
+<!-- ═══════════════════════════════════════════════════════════
+     SCRIPT PRINCIPAL — Firebase + Carrito
+═══════════════════════════════════════════════════════════ -->
 <script type="module">
-  import { initializeApp }  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, getDocs, query, orderBy, limit }
-                            from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  // ── 1. IMPORTAR FIREBASE ──────────────────────────────────
+  import { initializeApp }   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, orderBy, doc, getDoc }
+                             from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-  // ── WhatsApp ──────────────────────────────────────────────
+  // ── 2. LEER CONFIG DESDE firebase-config.js ───────────────
+  //    (ya cargado por <script src="firebase-config.js"> arriba)
+  const cfg   = window.FIREBASE_CONFIG;
   const waNum = window.WA_NUMBER || "573207410290";
+  const STORE_ADDRESS = window.STORE_CONFIG?.address || "Medellín, Colombia";
+  const MAPS_URL      = window.STORE_CONFIG?.mapsUrl  || "https://maps.google.com/?q=Medellín+Colombia";
+
+  // Botón WA flotante
   document.getElementById('waBtn').href =
-    `https://wa.me/${waNum}?text=Hola%2C%20me%20interesa%20un%20producto%20%F0%9F%8C%B8`;
+    `https://wa.me/${waNum}?text=Hola%2C%20vi%20el%20cat%C3%A1logo%20y%20me%20interesa%20un%20producto%20%F0%9F%8C%B8`;
 
-  // ── Firebase config ───────────────────────────────────────
-  const cfg     = window.FIREBASE_CONFIG;
-  const cfgOk   = cfg && cfg.apiKey && !cfg.apiKey.includes('PEGA');
-  const banner  = document.getElementById('configBanner');
+  // Datos tienda física
+  document.getElementById('tfDireccion').textContent = STORE_ADDRESS;
+  document.getElementById('tfTelefono').textContent  = `+${waNum.replace('57','57 ')}`;
+  document.getElementById('linkMaps').href = MAPS_URL;
 
+  // ── 3. INICIALIZAR FIREBASE ───────────────────────────────
+  const cfgOk = cfg && cfg.apiKey && !cfg.apiKey.includes('PEGA');
   let db = null;
   if (cfgOk) {
     try {
       const app = initializeApp(cfg);
       db = getFirestore(app);
-    } catch (e) { console.error('Firebase init:', e); }
-  } else {
-    banner.innerHTML = `<div class="config-banner">
-      <strong>⚠️ Firebase no configurado</strong>
-      Abre <code>firebase-config.js</code> y pega tu configuración de Firebase.
-      Mientras tanto se muestran productos de ejemplo.
-    </div>`;
+    } catch(e) { console.error('Firebase init error:', e.message); }
   }
 
-  // ── Estado ────────────────────────────────────────────────
+  // ── 4. ESTADO ─────────────────────────────────────────────
   let todosLosProductos = [];
   let selectedSizes     = [];
+  let cart              = JSON.parse(localStorage.getItem('ee_cart') || '[]');
+
+  // Producto en espera de talla
+  let pendingProduct = null;
+  let pendingSize    = null;
 
   const params   = new URLSearchParams(window.location.search);
   const catUrl   = params.get('cat')   || '';
   const badgeUrl = params.get('badge') || '';
-
   if (catUrl) {
-    const radio = document.querySelector(`input[value="${catUrl}"]`);
-    if (radio) radio.checked = true;
+    const r = document.querySelector(`input[value="${catUrl}"]`);
+    if (r) r.checked = true;
     document.getElementById('pageTitle').textContent = catUrl;
   }
 
-  // ── Cargar productos ──────────────────────────────────────
+  // ── 5. CARGAR PRODUCTOS DESDE FIRESTORE ───────────────────
   async function cargarProductos() {
     if (!db) {
+      // Firebase no configurado → mostrar ejemplo con aviso
       todosLosProductos = productosEjemplo();
       aplicarFiltros();
       return;
     }
     try {
-      // Intentar con orderBy primero (requiere índice en Firestore)
+      // Intentar con orderBy (necesita índice en Firestore)
       let snap;
       try {
         snap = await getDocs(query(collection(db,'productos'), orderBy('creadoEn','desc')));
-      } catch (_) {
-        // Si no hay índice, cargar sin ordenar
+      } catch(_) {
+        // Sin índice: cargar sin orden
         snap = await getDocs(collection(db,'productos'));
       }
-      todosLosProductos = snap.docs.map(d => ({id:d.id,...d.data()}));
-      if (todosLosProductos.length === 0) todosLosProductos = productosEjemplo();
-    } catch (e) {
-      console.warn('Firestore error:', e.message);
+
+      if (snap.empty) {
+        todosLosProductos = [];
+        document.getElementById('productGrid').innerHTML =
+          `<div class="empty-state"><div class="e-icon">🛍</div>
+           <p>Aún no hay productos en el catálogo.<br/>
+           <a href="admin.html" style="color:var(--rose)">Ir al admin para agregarlos →</a></p></div>`;
+        document.getElementById('resultCount').textContent = '0 productos';
+        return;
+      }
+
+      todosLosProductos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    } catch(e) {
+      console.error('Firestore error:', e.message);
       todosLosProductos = productosEjemplo();
     }
     aplicarFiltros();
   }
 
-  // ── Filtrar y renderizar ──────────────────────────────────
+  // ── 6. FILTRAR Y RENDERIZAR ───────────────────────────────
   window.aplicarFiltros = function() {
     const cat      = document.querySelector('input[name=cat]:checked')?.value || '';
     const maxPrice = parseInt(document.getElementById('priceRange').value);
     const sort     = document.getElementById('sortSelect').value;
 
     let res = todosLosProductos.filter(p => {
-      if (cat && p.categoria !== cat)             return false;
-      if (Number(p.precio) > maxPrice)            return false;
-      if (badgeUrl && p.badge !== badgeUrl)       return false;
+      if (cat && p.categoria !== cat)       return false;
+      if (Number(p.precio) > maxPrice)      return false;
+      if (badgeUrl && p.badge !== badgeUrl) return false;
       if (selectedSizes.length > 0) {
         const t = Array.isArray(p.tallas) ? p.tallas : [];
         if (!selectedSizes.some(s => t.includes(s))) return false;
       }
-      return true;
+      return p.stock > 0; // ocultar productos sin stock
     });
 
     if (sort === 'price-asc')  res.sort((a,b) => Number(a.precio) - Number(b.precio));
@@ -261,38 +421,203 @@
   function renderProductos(lista) {
     const grid = document.getElementById('productGrid');
     document.getElementById('resultCount').textContent =
-      `Mostrando ${lista.length} producto${lista.length!==1?'s':''}`;
+      `${lista.length} producto${lista.length !== 1 ? 's' : ''}`;
 
     if (lista.length === 0) {
-      grid.innerHTML = `<div class="empty-state"><div class="e-icon">🌸</div><p>No encontramos productos con esos filtros.<br/>Prueba quitando algún filtro.</p></div>`;
+      grid.innerHTML = `<div class="empty-state"><div class="e-icon">🌸</div>
+        <p>No encontramos productos con esos filtros.<br/>Prueba quitando algún filtro.</p></div>`;
       return;
     }
+
     grid.innerHTML = lista.map(p => {
-      const img   = p.imagenUrl ? `<img src="${p.imagenUrl}" alt="${p.nombre}" loading="lazy"/>` : `<span class="placeholder">👗</span>`;
-      const old   = p.precioAntes && Number(p.precioAntes)>0 ? `<s>$${Number(p.precioAntes).toLocaleString('es-CO')}</s>` : '';
-      const badge = p.badge ? `<span class="prod-badge">${p.badge}</span>` : '';
-      const tallas= Array.isArray(p.tallas) ? p.tallas.join(' · ') : (p.tallas||'');
+      const img    = p.imagenUrl
+        ? `<img src="${p.imagenUrl}" alt="${p.nombre}" loading="lazy"/>`
+        : `<span class="placeholder">👗</span>`;
+      const old    = p.precioAntes && Number(p.precioAntes) > 0
+        ? `<s>$${Number(p.precioAntes).toLocaleString('es-CO')}</s>` : '';
+      const badge  = p.badge ? `<span class="prod-badge">${p.badge}</span>` : '';
+      const tallas = Array.isArray(p.tallas) ? p.tallas.join(' · ') : (p.tallas || '');
+      const stockLow = p.stock <= 3 ? `<span style="font-size:.65rem;color:var(--rose);display:block;margin-top:.2rem">⚡ Solo ${p.stock} disponibles</span>` : '';
+
+      // Serializar el producto para pasarlo al modal de talla
+      const pJson = JSON.stringify(p).replace(/'/g,"&apos;");
+
       return `
-        <div class="prod-card" onclick="location.href='producto.html?id=${p.id||''}'">
+        <div class="prod-card" onclick="location.href='producto.html?id=${p.id}'">
           <div class="prod-img">
             ${badge}
             <button class="prod-wish" onclick="event.stopPropagation();this.classList.toggle('active')">♡</button>
             ${img}
           </div>
           <div class="prod-info">
-            <div class="prod-cat">${p.categoria||''}</div>
+            <div class="prod-cat">${p.categoria || ''}</div>
             <div class="prod-name">${p.nombre}</div>
-            <div class="prod-sizes">Tallas: ${tallas||'—'}</div>
+            <div class="prod-sizes">Tallas: ${tallas || '—'}${stockLow}</div>
             <div class="prod-price">$${Number(p.precio).toLocaleString('es-CO')} ${old}</div>
-            <button class="prod-add" onclick="event.stopPropagation()">Agregar al carrito</button>
+            <button class="prod-add" id="add-${p.id}"
+              onclick="event.stopPropagation();abrirModalTalla('${p.id}')">
+              🛍 Agregar al carrito
+            </button>
           </div>
         </div>`;
     }).join('');
   }
 
+  // ── 7. MODAL DE TALLA ─────────────────────────────────────
+  window.abrirModalTalla = function(prodId) {
+    const p = todosLosProductos.find(x => x.id === prodId);
+    if (!p) return;
+    pendingProduct = p;
+    pendingSize    = null;
+    const tallas   = Array.isArray(p.tallas) ? p.tallas : [];
+
+    document.getElementById('smTitle').textContent = p.nombre;
+    document.getElementById('smSub').textContent   = `Precio: $${Number(p.precio).toLocaleString('es-CO')}  ·  Stock: ${p.stock}`;
+    document.getElementById('smSizes').innerHTML   = tallas.length > 0
+      ? tallas.map(t =>
+          `<button class="sm-size" onclick="selectModalSize(this,'${t}')">${t}</button>`
+        ).join('')
+      : `<button class="sm-size selected" onclick="selectModalSize(this,'Única')">Única</button>`;
+
+    document.getElementById('sizeModal').classList.add('open');
+  };
+
+  window.selectModalSize = function(btn, size) {
+    document.querySelectorAll('.sm-size').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    pendingSize = size;
+  };
+
+  window.closeSizeModal = function() {
+    document.getElementById('sizeModal').classList.remove('open');
+    pendingProduct = null;
+    pendingSize    = null;
+  };
+
+  window.confirmarTalla = function() {
+    if (!pendingProduct) return;
+    if (!pendingSize) { showToast('⚠️ Selecciona una talla'); return; }
+    addToCart(pendingProduct, pendingSize);
+    closeSizeModal();
+  };
+
+  // ── 8. CARRITO ────────────────────────────────────────────
+  function addToCart(p, talla) {
+    const key = p.id + '_' + talla;
+    const ex  = cart.find(i => i.key === key);
+    if (ex) {
+      if (ex.qty >= p.stock) { showToast('⚠️ No hay más stock disponible'); return; }
+      ex.qty++;
+    } else {
+      cart.push({
+        key, id: p.id, nombre: p.nombre, precio: Number(p.precio),
+        talla, imagenUrl: p.imagenUrl || '', qty: 1, stock: p.stock
+      });
+    }
+    saveCart();
+    renderCart();
+    showToast(`✓ ${p.nombre} (${talla}) agregado`);
+    // Resaltar botón brevemente
+    const btn = document.getElementById('add-' + p.id);
+    if (btn) {
+      btn.textContent = '✓ Agregado';
+      btn.style.background = '#3d7a4a';
+      setTimeout(() => { btn.textContent = '🛍 Agregar al carrito'; btn.style.background = ''; }, 1800);
+    }
+    // Abrir carrito automáticamente
+    setTimeout(() => openCart(), 300);
+  }
+
+  function saveCart() {
+    localStorage.setItem('ee_cart', JSON.stringify(cart));
+    const total = cart.reduce((s,i) => s + i.qty, 0);
+    const badge = document.getElementById('cartBadge');
+    badge.textContent = total;
+    badge.style.display = total > 0 ? 'flex' : 'none';
+  }
+
+  function renderCart() {
+    const container = document.getElementById('cartItems');
+    const footer    = document.getElementById('cartFooter');
+    if (cart.length === 0) {
+      container.innerHTML = `<div class="cart-empty"><div class="ce-icon">🛍</div>
+        <p style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gray)">Tu carrito está vacío</p></div>`;
+      footer.style.display = 'none';
+      return;
+    }
+    container.innerHTML = cart.map((item, idx) => {
+      const img = item.imagenUrl
+        ? `<img src="${item.imagenUrl}" alt="${item.nombre}"/>`
+        : '👗';
+      return `
+        <div class="cart-item">
+          <div class="ci-img">${img}</div>
+          <div class="ci-info">
+            <div class="ci-name">${item.nombre}</div>
+            <div class="ci-detail">Talla: ${item.talla}</div>
+            <div class="ci-price">$${(item.precio * item.qty).toLocaleString('es-CO')}</div>
+            <div class="ci-qty">
+              <button onclick="cambiarQty(${idx},-1)">−</button>
+              <span>${item.qty}</span>
+              <button onclick="cambiarQty(${idx},1)">+</button>
+            </div>
+          </div>
+          <button class="ci-remove" onclick="removeItem(${idx})" title="Quitar">✕</button>
+        </div>`;
+    }).join('');
+
+    const subtotal = cart.reduce((s,i) => s + i.precio * i.qty, 0);
+    document.getElementById('cartTotal').textContent = '$' + subtotal.toLocaleString('es-CO');
+    footer.style.display = 'block';
+  }
+
+  window.cambiarQty = function(idx, delta) {
+    cart[idx].qty += delta;
+    if (cart[idx].qty <= 0) cart.splice(idx, 1);
+    else if (cart[idx].qty > cart[idx].stock) {
+      cart[idx].qty = cart[idx].stock;
+      showToast('⚠️ Stock máximo alcanzado');
+    }
+    saveCart(); renderCart();
+  };
+
+  window.removeItem = function(idx) {
+    cart.splice(idx, 1);
+    saveCart(); renderCart();
+  };
+
+  window.toggleCart = function() {
+    document.getElementById('cartDrawer').classList.toggle('open');
+    document.getElementById('cartOverlay').classList.toggle('open');
+  };
+
+  function openCart() {
+    document.getElementById('cartDrawer').classList.add('open');
+    document.getElementById('cartOverlay').classList.add('open');
+  }
+
+  // ── 9. CHECKOUT ───────────────────────────────────────────
+  window.irCheckout = function() {
+    if (cart.length === 0) return;
+    localStorage.setItem('ee_cart', JSON.stringify(cart));
+    location.href = 'checkout.html';
+  };
+
+  // Pedido por WhatsApp (fallback si no hay pasarela de pago)
+  window.pedirPorWhatsApp = function() {
+    if (cart.length === 0) return;
+    const subtotal = cart.reduce((s,i) => s + i.precio * i.qty, 0);
+    const items    = cart.map(i => `• ${i.nombre} (T:${i.talla}) x${i.qty} = $${(i.precio*i.qty).toLocaleString('es-CO')}`).join('\n');
+    const msg      = encodeURIComponent(
+      `Hola, quiero hacer un pedido 🌸\n\n${items}\n\n*Total: $${subtotal.toLocaleString('es-CO')}*\n\n¿Cómo procedo con el pago?`
+    );
+    window.open(`https://wa.me/${waNum}?text=${msg}`, '_blank');
+  };
+
+  // ── 10. HELPERS UI ────────────────────────────────────────
   window.toggleSize = function(btn, size) {
     btn.classList.toggle('active');
-    if (selectedSizes.includes(size)) selectedSizes = selectedSizes.filter(s=>s!==size);
+    if (selectedSizes.includes(size)) selectedSizes = selectedSizes.filter(s => s !== size);
     else selectedSizes.push(size);
     aplicarFiltros();
   };
@@ -307,24 +632,33 @@
   };
 
   window.setView = function(v) {
-    document.getElementById('productGrid').classList.toggle('list-view', v==='list');
-    document.getElementById('gridBtn').classList.toggle('active', v==='grid');
-    document.getElementById('listBtn').classList.toggle('active', v==='list');
+    document.getElementById('productGrid').classList.toggle('list-view', v === 'list');
+    document.getElementById('gridBtn').classList.toggle('active', v === 'grid');
+    document.getElementById('listBtn').classList.toggle('active', v === 'list');
   };
 
-  // ── Productos de ejemplo ──────────────────────────────────
+  function showToast(m) {
+    const t = document.getElementById('toast');
+    t.textContent = m; t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 2200);
+  }
+
+  // Datos de ejemplo cuando Firebase no está listo
   function productosEjemplo() {
     return [
-      {id:'ej1',nombre:'Vestido Floral Rosa',  categoria:'Vestidos',  precio:85000,precioAntes:110000,tallas:['S','M','L','XL'],imagenUrl:'',badge:'Nuevo'},
-      {id:'ej2',nombre:'Blusa Encaje Crema',   categoria:'Blusas',    precio:48000,precioAntes:0,     tallas:['XS','S','M'],   imagenUrl:'',badge:''},
-      {id:'ej3',nombre:'Conjunto Lino Beige',  categoria:'Conjuntos', precio:95000,precioAntes:120000,tallas:['S','M','L'],    imagenUrl:'',badge:'Oferta'},
-      {id:'ej4',nombre:'Vestido Midi Negro',   categoria:'Vestidos',  precio:72000,precioAntes:0,     tallas:['S','M','L','XL'],imagenUrl:'',badge:''},
-      {id:'ej5',nombre:'Falda Plisada Rosa',   categoria:'Faldas',    precio:52000,precioAntes:0,     tallas:['XS','S','M'],   imagenUrl:'',badge:'Nuevo'},
-      {id:'ej6',nombre:'Blusa Seda Champagne', categoria:'Blusas',    precio:65000,precioAntes:80000, tallas:['S','M','L'],    imagenUrl:'',badge:'Oferta'},
+      {id:'ej1',nombre:'Vestido Floral Rosa',  categoria:'Vestidos',  precio:85000,precioAntes:110000,tallas:['S','M','L','XL'],imagenUrl:'',badge:'Nuevo',stock:8},
+      {id:'ej2',nombre:'Blusa Encaje Crema',   categoria:'Blusas',    precio:48000,precioAntes:0,     tallas:['XS','S','M'],   imagenUrl:'',badge:'',stock:5},
+      {id:'ej3',nombre:'Conjunto Lino Beige',  categoria:'Conjuntos', precio:95000,precioAntes:120000,tallas:['S','M','L'],    imagenUrl:'',badge:'Oferta',stock:4},
+      {id:'ej4',nombre:'Vestido Midi Negro',   categoria:'Vestidos',  precio:72000,precioAntes:0,     tallas:['S','M','L','XL'],imagenUrl:'',badge:'',stock:6},
+      {id:'ej5',nombre:'Falda Plisada Rosa',   categoria:'Faldas',    precio:52000,precioAntes:0,     tallas:['XS','S','M'],   imagenUrl:'',badge:'Nuevo',stock:3},
+      {id:'ej6',nombre:'Blusa Seda Champagne', categoria:'Blusas',    precio:65000,precioAntes:80000, tallas:['S','M','L'],    imagenUrl:'',badge:'Oferta',stock:7},
     ];
   }
 
+  // ── INIT ─────────────────────────────────────────────────
   if (window.innerWidth > 900) document.getElementById('sidebarInner').classList.add('open');
+  saveCart();    // actualizar badge con carrito guardado
+  renderCart();  // renderizar carrito del localStorage
   cargarProductos();
 </script>
 </body>
