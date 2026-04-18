@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Eres Especial – Moda Femenina</title>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
@@ -10,109 +10,109 @@
     :root{--cream:#f5f0eb;--blush:#e8c4b8;--rose:#c4856a;--wine:#7a3d3d;--dark:#2a1a1a;--light:#faf7f4;--text:#4a3030;--gray:#9e8888}
     html{scroll-behavior:smooth}
     body{font-family:'Jost',sans-serif;background:var(--light);color:var(--text);overflow-x:hidden}
-    nav{position:fixed;top:0;left:0;width:100%;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 5%;background:rgba(250,247,244,.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(196,133,106,.2);transition:box-shadow .3s}
-    nav.scrolled{box-shadow:0 4px 30px rgba(122,61,61,.08)}
+    nav{position:fixed;top:0;left:0;width:100%;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 5%;background:rgba(250,247,244,.93);backdrop-filter:blur(12px);border-bottom:1px solid rgba(196,133,106,.2);transition:box-shadow .3s}
+    nav.sc{box-shadow:0 4px 28px rgba(122,61,61,.08)}
     .nav-logo{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:600;color:var(--wine);letter-spacing:.04em}
     .nav-logo span{font-style:italic;font-weight:300}
     .nav-links{display:flex;gap:2rem;list-style:none}
-    .nav-links a{font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);text-decoration:none;transition:color .2s}
+    .nav-links a{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);text-decoration:none;transition:color .2s}
     .nav-links a:hover{color:var(--rose)}
-    .nav-icons{display:flex;gap:1.2rem;align-items:center}
-    .nav-icons button{background:none;border:none;cursor:pointer;color:var(--text);font-size:1.1rem;transition:color .2s}
-    .nav-icons button:hover{color:var(--rose)}
-    .hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
-    .hamburger span{width:24px;height:2px;background:var(--text);display:block}
+    .nav-icons{display:flex;gap:.8rem;align-items:center}
+    .nav-btn{background:none;border:none;cursor:pointer;color:var(--text);font-size:1.05rem;padding:5px;transition:color .2s}
+    .nav-btn:hover{color:var(--rose)}
+    .admin-pill{display:none;align-items:center;gap:.4rem;padding:5px 14px;background:var(--wine);color:#fff;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;transition:background .2s}
+    .admin-pill:hover{background:var(--rose)}
+    .admin-pill.show{display:flex}
+    .hbg{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer}
+    .hbg span{width:22px;height:2px;background:var(--text);display:block}
     .hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:100px 5% 60px;background:linear-gradient(135deg,var(--cream) 60%,var(--blush) 100%);position:relative;overflow:hidden}
-    .hero::before{content:'';position:absolute;top:-120px;right:-120px;width:500px;height:500px;background:radial-gradient(circle,rgba(232,196,184,.5) 0%,transparent 70%);border-radius:50%}
+    .hero::before{content:'';position:absolute;top:-120px;right:-120px;width:500px;height:500px;background:radial-gradient(circle,rgba(232,196,184,.5),transparent 70%);border-radius:50%}
     .hero-text{position:relative;z-index:2}
-    .hero-tag{display:inline-block;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);margin-bottom:1.2rem}
-    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:300;line-height:1.1;color:var(--dark);margin-bottom:1.4rem}
+    .hero-tag{display:inline-block;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--rose);margin-bottom:1.2rem}
+    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,5vw,4.4rem);font-weight:300;line-height:1.1;color:var(--dark);margin-bottom:1.4rem}
     .hero-title em{font-style:italic;color:var(--wine)}
-    .hero-sub{font-size:.95rem;color:var(--gray);line-height:1.8;max-width:420px;margin-bottom:2.2rem}
-    .btn-primary{display:inline-block;padding:14px 36px;background:var(--wine);color:#fff;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background .25s,transform .2s}
-    .btn-primary:hover{background:var(--rose);transform:translateY(-2px)}
-    .btn-outline{display:inline-block;padding:13px 34px;border:1.5px solid var(--wine);color:var(--wine);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;background:transparent;cursor:pointer;transition:all .25s;margin-left:1rem}
-    .btn-outline:hover{background:var(--wine);color:#fff}
+    .hero-sub{font-size:.92rem;color:var(--gray);line-height:1.8;max-width:420px;margin-bottom:2.2rem}
+    .btn-p{display:inline-block;padding:13px 34px;background:var(--wine);color:#fff;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;border:none;cursor:pointer;transition:background .25s,transform .2s}
+    .btn-p:hover{background:var(--rose);transform:translateY(-2px)}
+    .btn-o{display:inline-block;padding:12px 32px;border:1.5px solid var(--wine);color:var(--wine);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;background:transparent;cursor:pointer;transition:all .25s;margin-left:.8rem}
+    .btn-o:hover{background:var(--wine);color:#fff}
     .hero-img{display:flex;align-items:center;justify-content:center;position:relative;z-index:2}
-    .hero-logo-wrap{width:min(380px,85vw);background:rgba(255,255,255,.55);backdrop-filter:blur(8px);border-radius:50%;border:2px solid rgba(196,133,106,.25);padding:40px;box-shadow:0 20px 60px rgba(122,61,61,.12);animation:float 6s ease-in-out infinite}
-    .hero-logo-wrap img{width:100%;height:auto}
-    .hero-logo-fb{font-family:'Cormorant Garamond',serif;font-size:2rem;text-align:center;color:var(--wine);line-height:1.4}
-    @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
-    .strip{background:var(--wine);color:#fff;display:flex;justify-content:center;gap:3rem;padding:14px 5%;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;flex-wrap:wrap}
+    .logo-wrap{width:min(360px,85vw);background:rgba(255,255,255,.55);backdrop-filter:blur(8px);border-radius:50%;border:2px solid rgba(196,133,106,.25);padding:40px;box-shadow:0 20px 60px rgba(122,61,61,.12);animation:fl 6s ease-in-out infinite}
+    .logo-wrap img{width:100%;height:auto}
+    .logo-fb{font-family:'Cormorant Garamond',serif;font-size:2rem;text-align:center;color:var(--wine);display:none;line-height:1.5}
+    @keyframes fl{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+    .strip{background:var(--wine);color:#fff;display:flex;justify-content:center;gap:3rem;padding:13px 5%;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;flex-wrap:wrap}
     .strip span::before{content:'✦ ';opacity:.6}
-    .section{padding:80px 5%}
-    .section-header{text-align:center;margin-bottom:3rem}
-    .section-label{font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);display:block;margin-bottom:.6rem}
-    .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(--dark)}
-    .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem}
+    .sec{padding:72px 5%}
+    .sec-hd{text-align:center;margin-bottom:2.8rem}
+    .sec-lbl{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--rose);display:block;margin-bottom:.6rem}
+    .sec-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;color:var(--dark)}
+    .cat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.4rem}
     .cat-card{position:relative;overflow:hidden;cursor:pointer;aspect-ratio:3/4;background:var(--cream)}
     .cat-img{width:100%;height:100%;background:linear-gradient(135deg,var(--blush),var(--cream));display:flex;align-items:center;justify-content:center;font-size:4rem;transition:transform .5s}
     .cat-card:hover .cat-img{transform:scale(1.06)}
-    .cat-overlay{position:absolute;bottom:0;left:0;right:0;padding:20px;background:linear-gradient(to top,rgba(42,26,26,.65),transparent);color:#fff}
-    .cat-name{font-family:'Cormorant Garamond',serif;font-size:1.3rem}
-    .cat-count{font-size:.72rem;opacity:.8;letter-spacing:.1em}
+    .cat-ov{position:absolute;bottom:0;left:0;right:0;padding:18px;background:linear-gradient(to top,rgba(42,26,26,.65),transparent);color:#fff}
+    .cat-name{font-family:'Cormorant Garamond',serif;font-size:1.25rem}
+    .cat-count{font-size:.7rem;opacity:.8;letter-spacing:.1em}
     .bg-cream{background:var(--cream)}
-    .prod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem}
+    .prod-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.8rem}
     .prod-card{background:#fff;cursor:pointer;transition:transform .3s,box-shadow .3s}
-    .prod-card:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(122,61,61,.1)}
-    .prod-img{aspect-ratio:3/4;background:linear-gradient(135deg,var(--blush) 0%,var(--cream) 100%);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+    .prod-card:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(122,61,61,.1)}
+    .prod-img{aspect-ratio:3/4;background:linear-gradient(135deg,var(--blush),var(--cream));display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
     .prod-img img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-    .prod-img .placeholder{font-size:5rem;z-index:0}
-    .prod-badge{position:absolute;top:12px;left:12px;background:var(--wine);color:#fff;font-size:.65rem;letter-spacing:.12em;padding:4px 10px;text-transform:uppercase;z-index:1}
-    .prod-wish{position:absolute;top:10px;right:12px;background:#fff;border:none;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--gray);transition:color .2s;z-index:1}
-    .prod-wish:hover,.prod-wish.active{color:var(--rose)}
-    .prod-info{padding:16px 18px 20px}
-    .prod-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--dark);margin-bottom:.3rem}
-    .prod-sizes{font-size:.7rem;color:var(--gray);letter-spacing:.08em;margin-bottom:.8rem}
-    .prod-price{font-size:1rem;font-weight:500;color:var(--wine)}
-    .prod-price s{font-weight:300;color:var(--gray);margin-left:.4rem;font-size:.85rem}
-    .prod-add{width:100%;margin-top:12px;padding:10px;background:var(--dark);color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;transition:background .2s}
-    .prod-add:hover{background:var(--wine)}
-    .skeleton{background:linear-gradient(90deg,var(--blush) 25%,var(--cream) 50%,var(--blush) 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
-    @keyframes shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
+    .prod-img .ph{font-size:4.5rem}
+    .prod-bdg{position:absolute;top:10px;left:10px;background:var(--wine);color:#fff;font-size:.6rem;letter-spacing:.1em;padding:3px 8px;text-transform:uppercase;z-index:1}
+    .prod-wish{position:absolute;top:8px;right:10px;background:#fff;border:none;cursor:pointer;width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--gray);z-index:1;transition:color .2s}
+    .prod-wish:hover,.prod-wish.on{color:var(--rose)}
+    .prod-info{padding:14px 16px 18px}
+    .prod-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--dark);margin-bottom:.3rem}
+    .prod-sz{font-size:.68rem;color:var(--gray);margin-bottom:.7rem}
+    .prod-price{font-size:.92rem;font-weight:500;color:var(--wine)}
+    .prod-price s{font-weight:300;color:var(--gray);margin-left:.3rem;font-size:.8rem}
+    .btn-add{width:100%;margin-top:10px;padding:9px;background:var(--dark);color:#fff;border:none;cursor:pointer;font-family:'Jost',sans-serif;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;transition:background .2s}
+    .btn-add:hover{background:var(--wine)}
+    .skel{background:linear-gradient(90deg,var(--blush) 25%,var(--cream) 50%,var(--blush) 75%);background-size:200% 100%;animation:sh 1.4s infinite}
+    @keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
     .skel-card{background:#fff}
     .skel-img{aspect-ratio:3/4}
-    .skel-line{height:14px;margin:12px 18px 6px;border-radius:2px}
-    .skel-line.short{width:60%}
-    .banner{background:linear-gradient(135deg,var(--wine) 0%,#4a2020 100%);color:#fff;padding:80px 5%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem}
-    .banner-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:300;line-height:1.1;margin-bottom:1rem}
+    .skel-line{height:13px;margin:11px 14px 5px;border-radius:2px}
+    .skel-line.s{width:55%}
+    .banner{background:linear-gradient(135deg,var(--wine),#4a2020);color:#fff;padding:72px 5%;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem}
+    .banner-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,4vw,3.2rem);font-weight:300;line-height:1.1;margin-bottom:.9rem}
     .banner-title em{font-style:italic;color:var(--blush)}
-    .banner-sub{opacity:.75;line-height:1.7;margin-bottom:2rem;font-size:.9rem}
-    .btn-light{display:inline-block;padding:13px 34px;background:#fff;color:var(--wine);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:opacity .2s}
+    .banner-sub{opacity:.75;line-height:1.7;margin-bottom:1.8rem;font-size:.88rem}
+    .btn-light{display:inline-block;padding:12px 32px;background:#fff;color:var(--wine);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;transition:opacity .2s}
     .btn-light:hover{opacity:.88}
-    .banner-img{display:flex;justify-content:center;font-size:8rem;opacity:.35}
-    .test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
-    .test-card{background:#fff;padding:30px;border-left:3px solid var(--blush);transition:border-color .3s}
+    .banner-deco{display:flex;justify-content:center;font-size:7rem;opacity:.3}
+    .test-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem}
+    .test-card{background:#fff;padding:28px;border-left:3px solid var(--blush);transition:border-color .3s}
     .test-card:hover{border-color:var(--rose)}
-    .test-stars{color:var(--rose);font-size:.85rem;margin-bottom:1rem}
-    .test-text{font-family:'Cormorant Garamond',serif;font-size:1.05rem;font-style:italic;line-height:1.7;color:var(--dark);margin-bottom:1.2rem}
-    .test-author{font-size:.78rem;color:var(--gray);letter-spacing:.08em}
-    footer{background:var(--dark);color:rgba(255,255,255,.7);padding:60px 5% 30px}
-    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
-    .footer-brand{font-family:'Cormorant Garamond',serif;font-size:1.6rem;color:#fff;margin-bottom:1rem}
-    .footer-brand span{font-style:italic;color:var(--blush)}
-    .footer-desc{font-size:.85rem;line-height:1.7;max-width:260px}
-    .footer-col h4{color:#fff;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:1.2rem}
-    .footer-col ul{list-style:none}
-    .footer-col li{margin-bottom:.6rem}
-    .footer-col a{font-size:.85rem;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
-    .footer-col a:hover{color:var(--blush)}
-    .footer-bottom{border-top:1px solid rgba(255,255,255,.1);padding-top:24px;display:flex;justify-content:space-between;align-items:center;font-size:.78rem;flex-wrap:wrap;gap:.8rem}
-    .social-links{display:flex;gap:1rem}
-    .social-links a{color:rgba(255,255,255,.5);text-decoration:none;font-size:1.1rem}
-    .social-links a:hover{color:var(--blush)}
-    .wa-btn{position:fixed;bottom:28px;right:28px;z-index:99;width:58px;height:58px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.6rem;text-decoration:none;box-shadow:0 6px 20px rgba(37,211,102,.4);animation:waPulse 2.5s infinite}
-    @keyframes waPulse{0%,100%{box-shadow:0 6px 20px rgba(37,211,102,.4)}50%{box-shadow:0 6px 30px rgba(37,211,102,.7)}}
-    @media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center;padding-top:120px}.hero-sub{margin:0 auto 2rem}.hero-img{order:-1}.hero-logo-wrap{width:min(260px,70vw)}.banner{grid-template-columns:1fr}.banner-img{display:none}.footer-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.hamburger{display:flex}}
-    @media(max-width:600px){.footer-grid{grid-template-columns:1fr}.strip{gap:1.5rem}}
+    .test-stars{color:var(--rose);font-size:.82rem;margin-bottom:.9rem}
+    .test-text{font-family:'Cormorant Garamond',serif;font-size:1rem;font-style:italic;line-height:1.7;color:var(--dark);margin-bottom:1rem}
+    .test-author{font-size:.75rem;color:var(--gray);letter-spacing:.08em}
+    footer{background:var(--dark);color:rgba(255,255,255,.7);padding:56px 5% 28px}
+    .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2.5rem;margin-bottom:2.5rem}
+    .foot-brand{font-family:'Cormorant Garamond',serif;font-size:1.5rem;color:#fff;margin-bottom:.9rem}
+    .foot-brand span{font-style:italic;color:var(--blush)}
+    .foot-desc{font-size:.83rem;line-height:1.7;max-width:250px}
+    .foot-col h4{color:#fff;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:1rem}
+    .foot-col ul{list-style:none}
+    .foot-col li{margin-bottom:.5rem}
+    .foot-col a{font-size:.83rem;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+    .foot-col a:hover{color:var(--blush)}
+    .foot-btm{border-top:1px solid rgba(255,255,255,.1);padding-top:22px;display:flex;justify-content:space-between;align-items:center;font-size:.76rem;flex-wrap:wrap;gap:.8rem}
+    .socials{display:flex;gap:.9rem}
+    .socials a{color:rgba(255,255,255,.5);text-decoration:none;font-size:1rem;transition:color .2s}
+    .socials a:hover{color:var(--blush)}
+    .wa-fab{position:fixed;bottom:26px;right:26px;z-index:99;width:54px;height:54px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;text-decoration:none;box-shadow:0 6px 18px rgba(37,211,102,.42);animation:wap 2.5s infinite}
+    @keyframes wap{0%,100%{box-shadow:0 6px 18px rgba(37,211,102,.42)}50%{box-shadow:0 6px 28px rgba(37,211,102,.68)}}
+    @media(max-width:900px){.hero{grid-template-columns:1fr;text-align:center;padding-top:110px}.hero-sub{margin:0 auto 2rem}.hero-img{order:-1}.logo-wrap{width:min(240px,70vw)}.banner{grid-template-columns:1fr}.banner-deco{display:none}.foot-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.hbg{display:flex}}
+    @media(max-width:600px){.foot-grid{grid-template-columns:1fr}.strip{gap:1.5rem}}
   </style>
 </head>
 <body>
 
-<!-- Lee la config de firebase-config.js ANTES de nada -->
-<script src="firebase-config.js"></script>
-
-<nav id="navbar">
+<nav id="nav">
   <div class="nav-logo">Eres <span>Especial</span></div>
   <ul class="nav-links">
     <li><a href="catalogo.html">Catálogo</a></li>
@@ -120,11 +120,10 @@
     <li><a href="#contacto">Contacto</a></li>
   </ul>
   <div class="nav-icons">
-    <button title="Buscar">🔍</button>
-    <button title="Favoritos">♡</button>
-    <button title="Carrito" onclick="location.href='catalogo.html'">🛍</button>
-    <button title="Mi cuenta" id="btnCuenta" onclick="location.href='login.html'">👤</button>
-    <button class="hamburger" aria-label="Menú"><span></span><span></span><span></span></button>
+    <a href="admin.html" class="admin-pill" id="adminPill">⚙️ Admin</a>
+    <button class="nav-btn" onclick="location.href='login.html'" title="Mi cuenta">👤</button>
+    <button class="nav-btn" onclick="location.href='catalogo.html'" title="Carrito">🛍</button>
+    <button class="hbg" aria-label="Menú"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
@@ -133,189 +132,178 @@
     <span class="hero-tag">✦ Nueva colección 2025</span>
     <h1 class="hero-title">Eres <em>especial</em><br/>y mereces<br/>sentirte así</h1>
     <p class="hero-sub">Prendas diseñadas para celebrar tu esencia. Cada pieza creada con amor para que brilles exactamente como eres.</p>
-    <a href="catalogo.html" class="btn-primary">Ver colección</a>
-    <a href="#novedades" class="btn-outline">Novedades</a>
+    <a href="catalogo.html" class="btn-p">Ver colección</a>
+    <a href="#novedades" class="btn-o">Novedades</a>
   </div>
   <div class="hero-img">
-    <div class="hero-logo-wrap">
+    <div class="logo-wrap">
       <img src="logo.png" alt="Eres Especial"
         onerror="this.style.display='none';document.getElementById('logoFb').style.display='block'"/>
-      <div class="hero-logo-fb" id="logoFb" style="display:none">🌸<br/>Eres<br/><em>Especial</em></div>
+      <div class="logo-fb" id="logoFb">🌸<br/>Eres<br/><em>Especial</em></div>
     </div>
   </div>
 </section>
 
 <div class="strip">
-  <span>Envíos solo en Medllín</span>
+  <span>Envíos en Medellín</span>
   <span>Cambios y devoluciones</span>
   <span>Pago seguro</span>
   <span>Asesoría personalizada</span>
 </div>
 
-<section class="section">
-  <div class="section-header">
-    <span class="section-label">Explorar</span>
-    <h2 class="section-title">Nuestras categorías</h2>
+<section class="sec">
+  <div class="sec-hd">
+    <span class="sec-lbl">Explorar</span>
+    <h2 class="sec-title">Nuestras categorías</h2>
   </div>
   <div class="cat-grid">
-    <div class="cat-card" onclick="location.href='catalogo.html?cat=Vestidos'"><div class="cat-img">👗</div><div class="cat-overlay"><div class="cat-name">Vestidos</div><div class="cat-count" id="cnt-vestidos">—</div></div></div>
-    <div class="cat-card" onclick="location.href='catalogo.html?cat=Blusas'"><div class="cat-img">👚</div><div class="cat-overlay"><div class="cat-name">Blusas</div><div class="cat-count" id="cnt-blusas">—</div></div></div>
-    <div class="cat-card" onclick="location.href='catalogo.html?cat=Pantalones'"><div class="cat-img">👖</div><div class="cat-overlay"><div class="cat-name">Pantalones</div><div class="cat-count" id="cnt-pantalones">—</div></div></div>
-    <div class="cat-card" onclick="location.href='catalogo.html?cat=Conjuntos'"><div class="cat-img">🎽</div><div class="cat-overlay"><div class="cat-name">Conjuntos</div><div class="cat-count" id="cnt-conjuntos">—</div></div></div>
+    <div class="cat-card" onclick="location.href='catalogo.html?cat=Vestidos'"><div class="cat-img">👗</div><div class="cat-ov"><div class="cat-name">Vestidos</div><div class="cat-count" id="cntV">—</div></div></div>
+    <div class="cat-card" onclick="location.href='catalogo.html?cat=Blusas'"><div class="cat-img">👚</div><div class="cat-ov"><div class="cat-name">Blusas</div><div class="cat-count" id="cntB">—</div></div></div>
+    <div class="cat-card" onclick="location.href='catalogo.html?cat=Pantalones'"><div class="cat-img">👖</div><div class="cat-ov"><div class="cat-name">Pantalones</div><div class="cat-count" id="cntP">—</div></div></div>
+    <div class="cat-card" onclick="location.href='catalogo.html?cat=Conjuntos'"><div class="cat-img">🎽</div><div class="cat-ov"><div class="cat-name">Conjuntos</div><div class="cat-count" id="cntC">—</div></div></div>
   </div>
 </section>
 
-<section class="section bg-cream" id="novedades">
-  <div class="section-header">
-    <span class="section-label">Lo más nuevo</span>
-    <h2 class="section-title">Novedades de temporada</h2>
+<section class="sec bg-cream" id="novedades">
+  <div class="sec-hd">
+    <span class="sec-lbl">Lo más nuevo</span>
+    <h2 class="sec-title">Novedades de temporada</h2>
   </div>
-  <div class="prod-grid" id="featuredProducts">
-    <div class="skel-card"><div class="skel-img skeleton"></div><div class="skel-line skeleton"></div><div class="skel-line short skeleton"></div></div>
-    <div class="skel-card"><div class="skel-img skeleton"></div><div class="skel-line skeleton"></div><div class="skel-line short skeleton"></div></div>
-    <div class="skel-card"><div class="skel-img skeleton"></div><div class="skel-line skeleton"></div><div class="skel-line short skeleton"></div></div>
-    <div class="skel-card"><div class="skel-img skeleton"></div><div class="skel-line skeleton"></div><div class="skel-line short skeleton"></div></div>
+  <div class="prod-grid" id="featProds">
+    <div class="skel-card"><div class="skel-img skel"></div><div class="skel-line skel"></div><div class="skel-line s skel"></div></div>
+    <div class="skel-card"><div class="skel-img skel"></div><div class="skel-line skel"></div><div class="skel-line s skel"></div></div>
+    <div class="skel-card"><div class="skel-img skel"></div><div class="skel-line skel"></div><div class="skel-line s skel"></div></div>
+    <div class="skel-card"><div class="skel-img skel"></div><div class="skel-line skel"></div><div class="skel-line s skel"></div></div>
   </div>
 </section>
 
 <section class="banner">
   <div>
     <h2 class="banner-title">Estilo que<br/><em>te abraza</em></h2>
-    <p class="banner-sub">Encuentra prendas que hablen de ti. Tallas XS a 3XL porque cada cuerpo es especial y merece verse increíble.</p>
+    <p class="banner-sub">Tallas XS a 3XL porque cada cuerpo es especial y merece verse increíble.</p>
     <a href="catalogo.html" class="btn-light">Comprar ahora</a>
   </div>
-  <div class="banner-img">🌸</div>
+  <div class="banner-deco">🌸</div>
 </section>
 
-<section class="section">
-  <div class="section-header">
-    <span class="section-label">Ellas nos eligen</span>
-    <h2 class="section-title">Lo que dicen nuestras clientas</h2>
+<section class="sec">
+  <div class="sec-hd">
+    <span class="sec-lbl">Ellas nos eligen</span>
+    <h2 class="sec-title">Lo que dicen nuestras clientas</h2>
   </div>
   <div class="test-grid">
-    <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">"Cada prenda que he comprado me ha hecho sentir realmente especial. La calidad es increíble."</p><span class="test-author">— María González</span></div>
-    <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">"Me encantó la atención personalizada y que tienen tallas para todas. ¡Volveré siempre!"</p><span class="test-author">— Sofía Martínez</span></div>
-    <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">"El vestido llegó perfecto y en tiempo récord. El empaque también es muy lindo y detallado."</p><span class="test-author">— Ana López</span></div>
+    <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">"Cada prenda me ha hecho sentir realmente especial. La calidad es increíble."</p><span class="test-author">— María González</span></div>
+    <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">"Me encantó la atención personalizada y que tienen tallas para todas."</p><span class="test-author">— Sofía Martínez</span></div>
+    <div class="test-card"><div class="test-stars">★★★★★</div><p class="test-text">"El vestido llegó perfecto y en tiempo récord. El empaque también es muy lindo."</p><span class="test-author">— Ana López</span></div>
   </div>
 </section>
 
 <footer id="contacto">
-  <div class="footer-grid">
-    <div><div class="footer-brand">Eres <span>Especial</span></div><p class="footer-desc">Moda femenina diseñada para celebrar tu esencia. Porque eres especial y mereces sentirte así cada día.</p></div>
-    <div class="footer-col"><h4>Tienda</h4><ul><li><a href="catalogo.html">Catálogo</a></li><li><a href="catalogo.html?badge=Nuevo">Novedades</a></li><li><a href="catalogo.html?oferta=1">Ofertas</a></li></ul></div>
-    <div class="footer-col"><h4>Ayuda</h4><ul><li><a href="#">Envíos</a></li><li><a href="#">Devoluciones</a></li><li><a href="#">FAQ</a></li></ul></div>
-    <div class="footer-col"><h4>Mi cuenta</h4><ul><li><a href="login.html">Iniciar sesión</a></li><li><a href="login.html">Registrarse</a></li><li><a href="#">Mis pedidos</a></li></ul></div>
+  <div class="foot-grid">
+    <div><div class="foot-brand">Eres <span>Especial</span></div><p class="foot-desc">Moda femenina diseñada para celebrar tu esencia.</p></div>
+    <div class="foot-col"><h4>Tienda</h4><ul><li><a href="catalogo.html">Catálogo</a></li><li><a href="catalogo.html?badge=Nuevo">Novedades</a></li><li><a href="catalogo.html?oferta=1">Ofertas</a></li></ul></div>
+    <div class="foot-col"><h4>Ayuda</h4><ul><li><a href="#">Envíos</a></li><li><a href="#">Devoluciones</a></li><li><a href="#">FAQ</a></li></ul></div>
+    <div class="foot-col"><h4>Mi cuenta</h4><ul><li><a href="login.html">Iniciar sesión</a></li><li><a href="login.html">Registrarse</a></li><li><a href="#">Mis pedidos</a></li></ul></div>
   </div>
-  <div class="footer-bottom">
+  <div class="foot-btm">
     <span>© 2025 Eres Especial · Todos los derechos reservados</span>
-    <div class="social-links"><a href="#">📸</a><a href="#">📘</a><a href="#">🎵</a></div>
+    <div class="socials"><a href="#">📸</a><a href="#">📘</a><a href="#">🎵</a></div>
   </div>
 </footer>
 
-<!-- BOTÓN WHATSAPP — número desde firebase-config.js -->
-<a id="waBtn" href="#" class="wa-btn" target="_blank" title="Chatea con nosotras">💬</a>
+<a id="waFab" href="https://wa.me/573207410290?text=Hola%2C%20me%20interesa%20un%20producto%20%F0%9F%8C%B8" class="wa-fab" target="_blank">💬</a>
 
 <script type="module">
-  import { initializeApp }     from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getFirestore, collection, getDocs, query, orderBy, limit, where }
-                               from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+  import { initializeApp }   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getFirestore, collection, getDocs, query, limit, where }
+                             from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
   import { getAuth, onAuthStateChanged }
-                               from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+                             from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-  // ── Config desde firebase-config.js ──────────────────────
-  const cfg = window.FIREBASE_CONFIG;
-  const waNum = window.WA_NUMBER || "573207410290";
+  /* ╔══════════════════════════════════════════════════════╗
+     ║  ⚠️  PEGA TU CONFIGURACIÓN DE FIREBASE AQUÍ         ║
+     ║  Firebase Console → ⚙️ Configuración → Tu app web   ║
+     ╚══════════════════════════════════════════════════════╝ */
+  const FB = {
+      apiKey: "AIzaSyC8mt3x7D3pcntULFReiUlENESAKx-L-kU",
+  authDomain: "eres-especial.firebaseapp.com",
+  projectId: "eres-especial",
+  //storageBucket: "eres-especial.firebasestorage.app",
+  messagingSenderId: "1060245560689",
+  appId: "1:1060245560689:web:57c9fcbff89469ccd2ead0"
+  };
 
-  // Poner número de WA en el botón flotante
-  document.getElementById('waBtn').href =
-    `https://wa.me/${waNum}?text=Hola%2C%20me%20interesa%20un%20producto%20de%20Eres%20Especial%20%F0%9F%8C%B8`;
+  const cfgOk = FB.apiKey && !FB.apiKey.includes('PEGA');
+  let db = null, auth = null;
 
-  // ── Verificar que la config no tiene placeholders ─────────
-  const configOk = cfg && cfg.apiKey && !cfg.apiKey.includes('PEGA');
-
-  let app, db, auth;
-  if (configOk) {
-    app  = initializeApp(cfg);
-    db   = getFirestore(app);
-    auth = getAuth(app);
-    onAuthStateChanged(auth, u => {
-      if (u) document.getElementById('btnCuenta').textContent = '👤✓';
-    });
-  }
-
-  // ── Construir tarjeta de producto ─────────────────────────
-  function renderCard(p) {
-    const img   = p.imagenUrl
-      ? `<img src="${p.imagenUrl}" alt="${p.nombre}" loading="lazy"/>`
-      : `<span class="placeholder">👗</span>`;
-    const old   = p.precioAntes && Number(p.precioAntes) > 0
-      ? `<s>$${Number(p.precioAntes).toLocaleString('es-CO')}</s>` : '';
-    const badge = p.badge ? `<span class="prod-badge">${p.badge}</span>` : '';
-    const tallas= Array.isArray(p.tallas) ? p.tallas.join(' · ') : (p.tallas || '');
-    const pid   = p.id || '';
-    return `
-      <div class="prod-card" onclick="location.href='producto.html?id=${pid}'">
-        <div class="prod-img">
-          ${badge}
-          <button class="prod-wish" onclick="event.stopPropagation();this.classList.toggle('active')">♡</button>
-          ${img}
-        </div>
-        <div class="prod-info">
-          <div class="prod-name">${p.nombre}</div>
-          <div class="prod-sizes">Tallas: ${tallas || '—'}</div>
-          <div class="prod-price">$${Number(p.precio).toLocaleString('es-CO')} ${old}</div>
-          <button class="prod-add" onclick="event.stopPropagation()">Agregar al carrito</button>
-        </div>
-      </div>`;
-  }
-
-  // ── Tarjetas de ejemplo (cuando Firebase no está listo) ───
-  function ejemploCards() {
-    return [
-      {id:'',nombre:'Vestido Floral Rosa', precio:85000,precioAntes:110000,tallas:['S','M','L','XL'],imagenUrl:'',badge:'Nuevo'},
-      {id:'',nombre:'Blusa Encaje Crema',  precio:48000,precioAntes:0,    tallas:['XS','S','M'],    imagenUrl:'',badge:''},
-      {id:'',nombre:'Conjunto Lino Beige', precio:95000,precioAntes:120000,tallas:['S','M','L'],     imagenUrl:'',badge:'Oferta'},
-      {id:'',nombre:'Vestido Midi Negro',  precio:72000,precioAntes:0,    tallas:['S','M','L','XL'],imagenUrl:'',badge:''},
-    ].map(p => renderCard(p)).join('');
-  }
-
-  // ── Cargar productos de Firestore ─────────────────────────
-  async function cargarNovedades() {
-    const grid = document.getElementById('featuredProducts');
-    if (!configOk || !db) { grid.innerHTML = ejemploCards(); return; }
+  if (cfgOk) {
     try {
-      // Sin orderBy para evitar error si no existe índice
-      const snap = await getDocs(query(collection(db,'productos'), limit(4)));
-      if (snap.empty) { grid.innerHTML = ejemploCards(); return; }
-      grid.innerHTML = '';
-      snap.forEach(d => { grid.innerHTML += renderCard({id:d.id,...d.data()}); });
-    } catch (e) {
-      console.warn('Firestore:', e.message);
-      grid.innerHTML = ejemploCards();
-    }
+      const app = initializeApp(FB);
+      db   = getFirestore(app);
+      auth = getAuth(app);
+      onAuthStateChanged(auth, async user => {
+        if (!user) return;
+        try {
+          const tok = await user.getIdTokenResult();
+          if (tok.claims.admin === true)
+            document.getElementById('adminPill').classList.add('show');
+        } catch(_) {}
+      });
+    } catch(e) { console.error('Firebase:', e.message); }
   }
 
-  // ── Contar por categoría ───────────────────────────────────
+  function cardHTML(p) {
+    const img  = p.imagenUrl ? `<img src="${p.imagenUrl}" alt="${p.nombre}" loading="lazy"/>` : `<span class="ph">👗</span>`;
+    const old  = p.precioAntes && Number(p.precioAntes) > 0 ? `<s>$${Number(p.precioAntes).toLocaleString('es-CO')}</s>` : '';
+    const bdg  = p.badge ? `<span class="prod-bdg">${p.badge}</span>` : '';
+    const sz   = Array.isArray(p.tallas) ? p.tallas.join(' · ') : (p.tallas || '');
+    return `<div class="prod-card" onclick="location.href='producto.html?id=${p.id}'">
+      <div class="prod-img">${bdg}<button class="prod-wish" onclick="event.stopPropagation();this.classList.toggle('on')">♡</button>${img}</div>
+      <div class="prod-info">
+        <div class="prod-name">${p.nombre}</div>
+        <div class="prod-sz">Tallas: ${sz||'—'}</div>
+        <div class="prod-price">$${Number(p.precio).toLocaleString('es-CO')} ${old}</div>
+        <button class="btn-add" onclick="event.stopPropagation();location.href='catalogo.html'">Ver en catálogo</button>
+      </div></div>`;
+  }
+
+  function demo() {
+    return [
+      {id:'d1',nombre:'Vestido Floral Rosa', precio:85000,precioAntes:110000,tallas:['S','M','L','XL'],imagenUrl:'',badge:'Nuevo'},
+      {id:'d2',nombre:'Blusa Encaje Crema',  precio:48000,precioAntes:0,     tallas:['XS','S','M'],   imagenUrl:'',badge:''},
+      {id:'d3',nombre:'Conjunto Lino Beige', precio:95000,precioAntes:120000,tallas:['S','M','L'],     imagenUrl:'',badge:'Oferta'},
+      {id:'d4',nombre:'Vestido Midi Negro',  precio:72000,precioAntes:0,     tallas:['S','M','L','XL'],imagenUrl:'',badge:''},
+    ];
+  }
+
+  async function cargarNovedades() {
+    const grid = document.getElementById('featProds');
+    if (!db) { grid.innerHTML = demo().map(cardHTML).join(''); return; }
+    try {
+      const snap = await getDocs(query(collection(db,'productos'), limit(4)));
+      if (snap.empty) { grid.innerHTML = demo().map(cardHTML).join(''); return; }
+      grid.innerHTML = '';
+      snap.forEach(d => { grid.innerHTML += cardHTML({id:d.id,...d.data()}); });
+    } catch(e) { grid.innerHTML = demo().map(cardHTML).join(''); }
+  }
+
   async function contarCats() {
-    if (!configOk || !db) return;
-    const cats = ['Vestidos','Blusas','Pantalones','Conjuntos'];
-    for (const cat of cats) {
+    if (!db) return;
+    const map = {Vestidos:'cntV',Blusas:'cntB',Pantalones:'cntP',Conjuntos:'cntC'};
+    for (const [cat, id] of Object.entries(map)) {
       try {
         const snap = await getDocs(query(collection(db,'productos'), where('categoria','==',cat)));
-        const el   = document.getElementById('cnt-'+cat.toLowerCase());
+        const el = document.getElementById(id);
         if (el) el.textContent = snap.size + ' producto' + (snap.size!==1?'s':'');
-      } catch (_) {}
+      } catch(_) {}
     }
   }
+
+  window.addEventListener('scroll', () =>
+    document.getElementById('nav').classList.toggle('sc', window.scrollY > 40));
 
   cargarNovedades();
   contarCats();
-</script>
-
-<script>
-  window.addEventListener('scroll', () => {
-    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 40);
-  });
 </script>
 </body>
 </html>
