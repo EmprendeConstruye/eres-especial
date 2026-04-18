@@ -36,7 +36,7 @@ const CONFIG_EE = {
 
   // 3. Tienda
   wa:      "573207410290",
-  address: "Cr 32 N102B-31, Cerca de la estación del metro cable Santo Domingo",
+  address: "Carrera 32 N102B-31, Cerca de la estacion del metro cable Santo Domingo",
   mapsUrl: "https://maps.app.goo.gl/KMUKJcXAjfjfKJsH9?g_st=ic",
   horario: "Lun–Mier-Jue-Sáb: 8:30am-8:30pm. Mart-Vier: 8:30am-6.30pm"
 };
